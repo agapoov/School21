@@ -1,0 +1,62 @@
+
+
+.card {
+    background-color: #1d2633; /* Цвет фона карточки */
+    border: none; /* Без границы */
+    border-radius: 25px;
+
+}
+
+.card-body {
+    border-radius: 55px; /* Закругление углов для содержимого карточки */
+    padding: 40px; /* Увеличение отступов для большей высоты */
+    height: auto; /* Позволяет карточке увеличиваться по высоте */
+    min-height: 300px; /* Минимальная высота карточки */
+}
+
+.card-text {
+    color: #e2f1ff; /* Цвет текста */
+    text-align: justify
+
+}
+
+.btn-primary {
+    background-color: #00ffaf; /* Цвет кнопки */
+    border: none; /* Без границы */
+    color: #1d2633 !important;
+    border-radius: 20px; /* Закругленные углы */
+    padding: 10px 20px; /* Отступы внутри кнопки */
+}
+
+.btn-primary:hover {
+    background-color: #0ba477; /* Цвет кнопки при наведении */
+}
+
+/* Пример дополнительного стиля для тени */
+.shadow {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); /* Тень для эффекта приподнятости */
+}
+
+@keyframes gradient-animation {
+    0% {
+        background-position: 0%;
+    }
+    50% {
+        background-position: 100%;
+    }
+    100% {
+        background-position: 0%;
+    }
+}
+
+.animated-title {
+    font-size: 3rem; /* Размер шрифта */
+    font-weight: bold; /* Жирное начертание */
+    background: linear-gradient(270deg, #36c5f0, #41e3aa, #37ffa2); /* Переливающийся градиент */
+    -webkit-background-clip: text; /* Обрезка фона по тексту */
+    -webkit-text-fill-color: transparent; /* Прозрачный цвет текста */
+    background-size: 200% 200%; /* Размер фона для анимации */
+    animation: gradient-animation 3s ease infinite; /* Анимация */
+    text-align: center; /* Центрирование текста */
+    margin: 20px 0; /* Отступы сверху и снизу */
+}

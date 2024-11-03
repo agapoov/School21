@@ -1,0 +1,161 @@
+body {
+  background-color: #1f293a; /*url("../images/bg-image.jpg");*/
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center center;
+  background-size: cover;
+  height: 100%;
+  font-family: 'Inter', sans-serif;
+
+}
+
+.dropdown-toggle::after {
+  content: none;
+}
+
+.custom-shadow {
+  box-shadow: 5px 5px 25px 19px #000000;
+}
+
+.product_id {
+  color: gray;
+  font-size: 15px;
+}
+
+.badge.bg-warning.text-dark {
+  position: absolute;
+  top: 10px;
+  right: 5px;
+  z-index: 1;
+  padding: 5px 10px;
+  border-radius: 3px;
+  font-size: 1rem;
+  box-shadow: 2px 2px 15px 9px #000000;
+}
+
+.badge-banner {
+  top: 80%;
+  border-radius: 15px;
+  font-size: 0.7rem;
+}
+
+
+footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+.btn_21 {
+    background-color: #00ffaf; /* Салатовый цвет для кнопок */
+    border: none; /* Убираем стандартную рамку */
+    color: #1d2633 !important; /* Цвет текста кнопки */
+    border-radius: 20px; /* Закругленные углы */
+    padding: 10px 20px; /* Отступы внутри кнопки */
+    transition: background-color 0.3s, transform 2s; /* Плавные переходы */
+
+}
+.logo-img {
+    margin-left: -55px;
+    height: 55px; /* Задайте высоту логотипа */
+    width: auto; /* Пропорциональная ширина */
+}
+.btn_21:hover {
+    background-color: #0ba477; /* Темнее при наведении */
+    transform: scale(1.05); /* Немного увеличиваем кнопку при наведении */
+}
+
+.btn_21:focus {
+    outline: none; /* Убираем стандартный обвод при фокусе */
+}
+
+.custom-navbar {
+    background-color: #1f293a; /* Цвет для хедера */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); /* Легкая тень */
+    border-bottom: 2px solid #00ffaf; /* Нижняя граница салатового цвета */
+    padding: 5px 10px;
+
+}
+.custom-navbar .navbar-nav {
+    align-items: center;
+}
+.custom-navbar .nav-link {
+    color: #ffffff; /* Цвет текста ссылок */
+    padding: 10px 15px;
+    font-weight: 500;
+    transition: color 0.3s ease, background-color 0.3s ease; /* Плавная анимация для навигации */
+}
+
+.custom-navbar .nav-link:hover {
+    color: #00ffaf; /* Цвет текста навигационных ссылок при наведении */
+}
+.navbar-nav .nav-item {
+    margin-right: 10px; /* Подберите нужное значение */
+}
+.navbar-nav {
+    gap: 10px; /* Подберите нужное значение */
+}
+.custom-navbar .navbar-toggler {
+    border-color: #ffffff; /* Белая рамка для кнопки */
+}
+
+.custom-navbar .navbar-toggler-icon {
+    background-color: #ffffff; /* Белая иконка для кнопки */
+}
+
+.search-form {
+    position: relative;
+}
+.search-input::placeholder {
+    color: gray;
+    font-family: 'Consolas', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', monospace;
+}
+.search-input {
+    width: 250px; /* Ширина поля ввода */
+    height: 50px; /* Высота поля ввода */
+    border: 4px solid #00ffaf;
+    border-radius: 25px; /* Округлые края */
+    background: none;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 400;
+    outline: none;
+    padding-left: 10px; /* Отступ для текста */
+    transition: width 0.4s ease-in-out, border-radius 0.4s ease-in-out;
+}
+
+.search-input:focus {
+    width: 300px; /* Ширина при фокусе */
+}
+
+.search {
+    background-color: #00ffaf; /* Цвет фона кнопки */
+    border: none; /* Без границы */
+    color: #fff; /* Цвет иконки */
+    border-radius: 50%; /* Круглая форма */
+    width: 50px; /* Ширина кнопки */
+    height: 50px; /* Высота кнопки */
+    display: flex; /* Используем flexbox для центрирования */
+    align-items: center; /* Вертикальное выравнивание */
+    justify-content: center; /* Горизонтальное выравнивание */
+    cursor: pointer; /* Указатель при наведении */
+    transition: background-color 0.3s ease; /* Плавный переход фона */
+}
+
+.search:hover {
+    background-color: #0ba477; /* Изменяем цвет фона при наведении */
+}
+
+
+.dropdown-menu {
+    background-color: #1d2633; /* Цвет фона, например, темно-серый */
+    color: #1d2633; /* Цвет текста */
+}
+
+.dropdown-item {
+    color: #ffffff; /* Цвет текста для элементов выпадающего меню */
+}
+
+.dropdown-item:hover {
+    background-color: #495057; /* Цвет фона при наведении */
+}

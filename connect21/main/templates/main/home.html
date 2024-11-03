@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'deps/css/main_page.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-4">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card text-center rounded-3 shadow">
+                    <div class="card-body">
+                        <h1 class="animated-title">Добро пожаловать в Connect21!</h1>
+                        <p class="card-text">
+                            Здесь вы можете найти пользователей, обмениваться информацией и создавать группы по интересам.
+                            Присоединяйтесь к сообществу, чтобы делиться опытом и получать новые знания.
+                        </p>
+                        <a href="{% url 'main:about' %}" class="btn btn-primary">Узнать больше</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
