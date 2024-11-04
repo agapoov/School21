@@ -1,0 +1,21 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'deps/css/login_css.css' %}">
+
+<div class="container">
+    <div class="login-box">
+        <h2>Подтверждение кода</h2>
+        <form method="post">
+            {% csrf_token %}
+            {% if error %}
+                <p style="color: red;">{{ error }}</p>
+            {% endif %}
+            <div class="input-box">
+                {{ form.code }}  <!-- Поле для кода подтверждения -->
+                <label for="{{ form.code.id_for_label }}">Код подтверждения</label>
+                {{ form.code.errors }}
+            </div>
+            <button type="submit" class="btn">Подтвердить</button>
+        </form>
+    </div>
+</div>

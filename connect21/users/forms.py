@@ -69,3 +69,7 @@ class CustomUserCreationForm(UserCreationForm):
         model = User
         fields = ['first_name', 'last_name', 'surname', 'gender', 'age', 'tg_username', 'username',
                   'email', 'password1', 'password2']
+
+
+class TwoFactorLoginForm(forms.Form):
+    code = forms.IntegerField(label='Код подтверждения')

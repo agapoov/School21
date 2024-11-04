@@ -1,0 +1,77 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'deps/css/register_css.css' %}">
+
+<div class="container">
+    <div class="login-box">
+        <h2>Регистрация</h2>
+        <form method="post" action="{% url 'users:register' %}">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            <div class="input-row">
+                <div class="input-box">
+                    {{ form.first_name }}
+                    <label for="{{ form.first_name.id_for_label }}">Имя</label>
+                    {{ form.first_name.errors }}
+                </div>
+                <div class="input-box">
+                    {{ form.last_name }}
+                    <label for="{{ form.last_name.id_for_label }}">Фамилия</label>
+                    {{ form.last_name.errors }}
+                </div>
+            </div>
+            <div class="input-row">
+                <div class="input-box">
+                    {{ form.surname }}
+                    <label for="{{ form.surname.id_for_label }}">Отчество</label>
+                    {{ form.surname.errors }}
+                </div>
+                <div class="input-box">
+                    {{ form.gender }}
+                    <label for="{{ form.gender.id_for_label }}"></label>
+                    {{ form.gender.errors }}
+                </div>
+            </div>
+            <div class="input-row">
+                <div class="input-box">
+                    {{ form.age }}
+                    <label for="{{ form.age.id_for_label }}">Возраст</label>
+                    {{ form.age.errors }}
+                </div>
+                <div class="input-box">
+                    {{ form.tg_username }}
+                    <label for="{{ form.tg_username.id_for_label }}">Ник в @Telegram</label>
+                    {{ form.tg_username.errors }}
+                </div>
+            </div>
+            <div class="input-row">
+                <div class="input-box">
+                    {{ form.username }}
+                    <label for="{{ form.username.id_for_label }}">Имя пользователя</label>
+                    {{ form.username.errors }}
+                </div>
+                <div class="input-box">
+                    {{ form.email }}
+                    <label for="{{ form.email.id_for_label }}">Электронная почта</label>
+                    {{ form.email.errors }}
+                </div>
+            </div>
+            <div class="input-row">
+                <div class="input-box">
+                    {{ form.password1 }} <!-- Убедитесь, что имя совпадает с полем в форме -->
+                    <label for="{{ form.password1.id_for_label }}">Пароль</label>
+                    {{ form.password1.errors }}
+                </div>
+                <div class="input-box">
+                    {{ form.password2 }} <!-- Убедитесь, что имя совпадает с полем в форме -->
+                    <label for="{{ form.password2.id_for_label }}">Подтверждение пароля</label>
+                    {{ form.password2.errors }}
+                </div>
+            </div>
+            <button type="submit" class="btn">Зарегистрироваться</button>
+            <div class="signup-link">
+                <a href="{% url 'users:login' %}">Уже есть аккаунт? Войти</a>
+            </div>
+        </form>
+    </div>
+</div>
