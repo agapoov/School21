@@ -19,7 +19,7 @@
                 {{ form.password.errors }}  <!-- Ошибки для поля пароля -->
             </div>
             <div class="forgot-pass">
-                <a href="#">Забыли пароль?</a>
+                <a href="{% url 'users:forgot-password' %}">Забыли пароль?</a>
             </div>
             <button type="submit" class="btn">Войти</button>
             <div class="signup-link">

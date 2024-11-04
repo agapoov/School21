@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="my-5 pt-5 px-2 pb-2 bg-white custom-shadow rounded text-center">
+        <h2 class="m-2"><strong>Ошибка 404: Страница не найдена</strong></h2>
+        <p class="m-2" style="font-size: 1.2rem;">Извините, но запрашиваемая страница не существует.</p>
+        <img src="{% static 'deps/icons/404.webp' %}" alt="404 Image" class="img-fluid my-4">
+        <a class="btn btn-dark" href="{% url 'main:index' %}">
+            Вернуться на главную
+        </a>
+    </div>
+{% endblock %}

@@ -59,7 +59,7 @@
                         </li>
                         {% endif %}
                     </ul>
-                    <form class="d-flex search-form" role="search" action="#" method="get">
+                    <form class="d-flex search-form" role="search" action="{% url 'community:search' %}" method="get">
                         <input class="form-control me-2 custom-search search-input" type="search" name="q" placeholder="Найти пользователя" aria-label="Search">
                         <button class="btn_21 search" type="submit">
                             <i class="bi bi-search"></i>

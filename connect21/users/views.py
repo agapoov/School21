@@ -99,6 +99,10 @@ class CustomProfileView(LoginRequiredMixin, UpdateView):
         return context
 
 
+def forgot_password(request):
+    return render(request, 'users/forgot_password.html')
+
+
 class CustomLogoutView(LogoutView):
     def get_success_url(self):
         messages.success(self.request, 'Вы вышли из аккаунта')

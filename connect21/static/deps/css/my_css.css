@@ -8,19 +8,10 @@ body {
   font-family: 'Inter', sans-serif;
 
 }
-/*#1f293a*/
 .dropdown-toggle::after {
   content: none;
 }
 
-.custom-shadow {
-  box-shadow: 5px 5px 25px 19px #000000;
-}
-
-.product_id {
-  color: gray;
-  font-size: 15px;
-}
 
 .badge.bg-warning.text-dark {
   position: absolute;
@@ -45,7 +36,54 @@ footer {
     bottom: 0;
     width: 100%;
 }
+.custom-shadow {
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Увеличиваем размытие и добавляем прозрачность */
+    transition: transform 0.3s; /* Добавляем плавный переход для эффекта наведения */
+}
 
+.custom-shadow:hover {
+    transform: translateY(-5px); /* Эффект поднятия карточки при наведении */
+}
+
+.card {
+    background-color: #1f293a; /* Цвет фона карточки */
+    border-radius: 15px; /* Полузакругленные края */
+    transition: transform 0.3s; /* Плавное увеличение при наведении */
+}
+
+.card:hover {
+    transform: translateY(-10px); /* Подъем карточки при наведении */
+}
+
+.card-img-top {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    height: 300px;
+    object-fit: cover;
+}
+
+.custom-title {
+    color: #00ffaf; /* Цвет заголовка */
+    font-weight: 600; /* Полужирный шрифт */
+    margin: 15px 0; /* Отступы вокруг заголовка */
+}
+
+.card-link {
+    text-decoration: none; /* Уберите подчеркивание текста ссылки */
+}
+
+.card-link:hover .custom-title {
+    text-decoration: underline; /* Подчеркивание заголовка при наведении */
+}
+
+.custom-text {
+    color: #e2f1ff; /* Цвет текста */
+}
+
+.telegram-handle {
+    color: #00ffaf; /* Цвет для ника в Telegram */
+    font-weight: 500; /* Полужирный шрифт для ника */
+}
 .btn_21 {
     background-color: #00ffaf; /* Салатовый цвет для кнопок */
     border: none; /* Убираем стандартную рамку */
@@ -158,4 +196,41 @@ footer {
 
 .dropdown-item:hover {
     background-color: #495057; /* Цвет фона при наведении */
+}
+
+.pagination {
+    border-radius: 20px; /* Полузакругленные края */
+    background-color: rgba(31, 41, 58, 0.8); /* Полупрозрачный фон */
+    padding: 10px; /* Отступы внутри пагинации */
+}
+
+.page-item {
+    margin: 0 5px; /* Отступы между элементами пагинации */
+}
+
+.page-link {
+    color: #fff; /* Цвет текста по умолчанию (белый) */
+    background-color: #1f293a; /* Темный фон кнопок */
+    border: 2px solid transparent; /* Начальный цвет границы */
+    border-radius: 15px; /* Полузакругленные края для ссылок */
+    padding: 8px 12px; /* Отступы внутри ссылок */
+    transition: background-color 0.3s, color 0.3s; /* Плавные переходы */
+}
+
+.page-link:hover {
+    background-color: rgba(0, 255, 175, 0.8); /* Цвет фона при наведении */
+    border-color: #00ffaf; /* Цвет границы при наведении */
+    color: #1f293a; /* Цвет текста при наведении */
+}
+
+.page-item.active .page-link {
+    background-color: #00ffaf; /* Цвет фона для активной страницы */
+    color: #1f293a; /* Цвет текста для активной страницы */
+    border-color: #00ffaf; /* Цвет границы для активной страницы */
+}
+
+.page-item.disabled .page-link {
+    color: rgba(255, 255, 255, 0.5); /* Цвет текста для неактивных элементов */
+    background-color: #1f293a; /* Темный фон для неактивных кнопок */
+    pointer-events: none; /* Отключаем события клика для неактивных элементов */
 }

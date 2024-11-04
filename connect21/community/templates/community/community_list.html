@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <div class="row">
+        {% for user in users %}
+            <div class="col-lg-4 col-md-6 p-4">
+                <div class="card border-0 rounded custom-shadow">
+                    <img src="{% if user.image %}{{ user.image.url }}{% else %}{% static 'deps/images/default_logo.webp' %}{% endif %}" alt="Аватар пользователя" class="card-img-top rounded-top">
+                    <div class="card-body text-center">
+                        <a href="#" class="card-link">
+                            <h5 class="card-title custom-title">{{ user.username }}</h5>
+                        </a>
+                        <p class="card-text custom-text">Ник в Telegram: <span class="telegram-handle">{{ user.tg_username }}</span></p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center my-4">
+            <li class="page-item {% if not page_obj.has_previous %}disabled{% endif %}">
+                <a class="page-link" href="?{% if page_obj.has_previous %}page={{ page_obj.previous_page_number }}{% endif %}">Назад</a>
+            </li>
+
+            {% for page in page_obj.paginator.page_range %}
+                {% if page >= page_obj.number|add:-2 and page <= page_obj.number|add:2 %}
+                    <li class="page-item {% if page_obj.number == page %}active{% endif %}">
+                        <a class="page-link" href="?page={{ page }}">{{ page }}</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+
+            <li class="page-item {% if not page_obj.has_next %}disabled{% endif %}">
+                <a class="page-link" href="?{% if page_obj.has_next %}page={{ page_obj.next_page_number }}{% endif %}">Следующая</a>
+            </li>
+        </ul>
+    </nav>
+{% endblock %}

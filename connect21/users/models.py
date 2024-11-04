@@ -13,7 +13,7 @@ class User(AbstractUser):
     ]
     surname = models.CharField(max_length=128)
     tg_username = models.CharField(max_length=128)
-    age = models.IntegerField()
+    age = models.IntegerField(default=0)
     email = models.EmailField(unique=True)
     gender = models.CharField(max_length=10, choices=GENDER_CHOICES)
     interests = models.CharField(max_length=128, null=True, blank=True)
