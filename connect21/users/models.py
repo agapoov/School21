@@ -1,8 +1,9 @@
-from django.contrib.auth.models import AbstractUser
+import random
+
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+
 from .tasks import send_two_factor_code_email_task
-import random
 
 
 class User(AbstractUser):
@@ -15,6 +16,8 @@ class User(AbstractUser):
     age = models.IntegerField()
     email = models.EmailField(unique=True)
     gender = models.CharField(max_length=10, choices=GENDER_CHOICES)
+    interests = models.CharField(max_length=128, null=True, blank=True)
+    additional_info = models.CharField(max_length=512, null=True, blank=True)
 
     def __str__(self):
         return self.username
@@ -28,6 +31,6 @@ class User(AbstractUser):
         subject = f'Код подтверждения для {self.username}'
         message = (
             f'Ваш код подтверждения: {code}\n'
-            'С уважением, команда School21'
+            'С уважением, команда School21 💘'
         )
         send_two_factor_code_email_task.delay(subject, message, self.email)

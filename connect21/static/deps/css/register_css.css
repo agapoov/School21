@@ -115,7 +115,13 @@ h2 {
     font-size: 1em;
     color: #1f293a;
     font-weight: 600;
+    transition: background-color 0.3s ease;
 }
+
+.btn:hover {
+    background-color: #0ba477; /* Цвет фона при наведении */
+}
+
 .signup-link {
     margin: 20px 0 10px;
     text-align: center;
@@ -163,4 +169,67 @@ h2 {
     background: #1f293a; /* Цвет фона при фокусе */
     border-color: #00ffaf; /* Цвет рамки при фокусе */
     color: #fff; /* Цвет текста при фокусе */
+}
+
+.form-field {
+    position: relative;
+    margin: 15px 0;
+    width: 100%; /* Задаем общую ширину для более крупного поля */
+    max-width: 750px; /* Ограничиваем максимальную ширину */
+}
+.form-field textarea {
+    width: 85%;
+    height: 250px;
+    background: transparent;
+    border: 2px solid #2c4766;
+    outline: none;
+    border-radius: 40px;
+    font-size: 1em;
+    color: #fff;
+    padding: 20px;
+    transition: height 0.3s ease, border-color 0.3s ease; /* Плавное изменение высоты */
+    resize: none; /* Разрешаем изменение только по вертикали */
+    line-height: 1.5em;
+
+
+}
+.form-field textarea::-webkit-scrollbar {
+    width: 8px; /* Ширина полосы прокрутки */
+}
+
+.form-field textarea:focus,
+.form-field textarea:valid {
+    border-color: #00ffaf;
+}
+.form-field textarea::-webkit-scrollbar-thumb:hover {
+    background: #00bfae; /* Цвет при наведении */
+    border-radius: 10px;
+}
+.form-field label {
+    position: absolute;
+    top: -10px; /* Смещаем для освобождения места под текст */
+    left: 20px;
+    font-size: 1em;
+    color: #00ffaf;
+    pointer-events: none;
+    transition: .5s ease;
+    background: #1f293a;
+    padding: 0 6px;
+}
+.back-btn {
+    background-color: #00ffaf;
+    border: none;
+    color: #1d2633 !important;
+    border-radius: 20px;
+    padding: 10px 20px;
+    text-decoration: none;
+    transition: background-color 0.3s, transform 2s;
+}
+
+.back-btn:hover {
+        background-color: #0ba477;
+        transform: scale(1.05);
+}
+.back-btn:focus {
+    outline: none;
 }

@@ -1,6 +1,7 @@
 from django import forms
-from .models import User
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+
+from .models import User
 
 
 class CustomUserLoginForm(AuthenticationForm):
@@ -32,7 +33,7 @@ class CustomUserCreationForm(UserCreationForm):
         label='Отчество',
     )
     gender = forms.ChoiceField(
-        choices=[('M', 'Мужской'), ('F', 'Женский')],  # Соответствие с моделью
+        choices=[('M', 'Мужской'), ('F', 'Женский')],
         widget=forms.Select(attrs={'class': 'form-control'}),
         label='Пол'
     )
@@ -62,7 +63,7 @@ class CustomUserCreationForm(UserCreationForm):
     password2= forms.CharField(
         widget=forms.PasswordInput(attrs={'class': 'form-control'}),
         label='Подтверждение пароля',
-        required = True
+        required=True
     )
 
     class Meta:
@@ -73,3 +74,14 @@ class CustomUserCreationForm(UserCreationForm):
 
 class TwoFactorLoginForm(forms.Form):
     code = forms.IntegerField(label='Код подтверждения')
+
+
+class CustomUserProfileForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'surname', 'gender', 'age', 'tg_username', 'username', 'email', 'interests', 'additional_info']
+        widgets = {
+            'interests': forms.Textarea(attrs={'rows': 4, 'cols': 40, 'oninput': 'autoResize(this)', 'maxlength': '128'}),
+            'additional_info': forms.Textarea(attrs={'rows': 6, 'cols': 40, 'oninput': 'autoResize(this)', 'maxlength': '512'}),
+            'email': forms.EmailInput(attrs={'readonly': 'readonly'})
+        }

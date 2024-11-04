@@ -49,8 +49,7 @@
                                 Мой профиль
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Корзина</a></li>
-                                <li><a class="dropdown-item" href="#">Личный кабинет</a></li>
+                                <li><a class="dropdown-item" href="{% url 'users:profile' %}">Личный кабинет</a></li>
                                 {% if user.is_admin or user.is_staff %}
                                 <li><a class="dropdown-item" href="{% url 'admin:index' %}">Админ панель</a></li>
                                 {% endif %}
@@ -73,7 +72,7 @@
     <section>
         <div class="container">
             <div class="row mt-1">
-                <div class="col-lg-10 offset-lg-1"> <!-- Сдвигаем содержимое в центр -->
+                <div class="col-lg-10 offset-lg-1">
                     {% include 'includes/notifications.html' %}
                     {% block content %} {% endblock %}
                 </div>
