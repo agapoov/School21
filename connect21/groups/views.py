@@ -1,10 +1,9 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404, redirect, render
 from django.views import View
 
-from .models import ChatGroup, GroupMembership, GroupInvitation, ChatMessage
-
+from .models import ChatGroup, ChatMessage, GroupInvitation, GroupMembership
 
 # @login_required
 # def create_group(request):

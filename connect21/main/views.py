@@ -1,8 +1,9 @@
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404
-from groups.models import GroupMembership, GroupInvitation
-from django.contrib import messages
+from django.shortcuts import get_object_or_404, render
+
+from groups.models import GroupInvitation, GroupMembership
 
 
 def home_page(request):

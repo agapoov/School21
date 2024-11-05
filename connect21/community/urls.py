@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import UserCommunityView, PublicProfileView, invite_user
+from .views import PublicProfileView, UserCommunityView, invite_user
 
 app_name = 'community'
 
