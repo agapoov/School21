@@ -8,7 +8,6 @@
 {% block content %}
 <div class="chat-container">
     <div class="chat-messages" id="chat-messages">
-        <!-- Выводим историю сообщений -->
         {% for message in messages %}
             <div class="chat-message">
                 <strong>{{ message.user.username }}:</strong> {{ message.message }}
@@ -20,7 +19,7 @@
     <button id="chat-message-submit">Отправить</button>
 </div>
 <script>
-    const groupName = "{{ group_name }}";  // Передаём имя группы из контекста
+    const groupName = "{{ group_name }}";
 </script>
 <script src="{% static 'deps/js/chat.js' %}"></script>
 {% endblock %}
