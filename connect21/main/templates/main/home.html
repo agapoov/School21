@@ -20,6 +20,41 @@
                         <a href="{% url 'main:about' %}" class="btn btn-primary">Узнать больше</a>
                     </div>
                 </div>
+
+                <div class="user-chats mt-4">
+                    <h2>Ваши чаты</h2>
+                    {% if user_groups %}
+                        <ul class="list-group">
+                            {% for membership in user_groups %}
+                                <li class="list-group-item">
+                                    <a href="{% url 'groups:group_chat' membership.group.name %}">{{ membership.group.name }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>У вас пока нет чатов.</p>
+                    {% endif %}
+                </div>
+
+                <div class="incoming-invitations mt-4">
+                    <h2>Входящие приглашения</h2>
+                    {% if incoming_invitations.count > 0 %}
+                        <ul class="list-group">
+                            {% for invitation in incoming_invitations %}
+                                <li class="list-group-item">
+                                    Вы получили приглашение от {{ invitation.sender.username }} в группу "{{ invitation.group.name }}"!
+                                    <form method="POST" action="{% url 'main:respond_invitation' invitation.id %}" style="display:inline;">
+                                        {% csrf_token %}
+                                        <button type="submit" name="response" value="accept" class="btn btn-success btn-sm">Принять</button>
+                                        <button type="submit" name="response" value="decline" class="btn btn-danger btn-sm">Отклонить</button>
+                                    </form>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>У вас пока нет входящих приглашений.</p>
+                    {% endif %}
+                </div>
             </div>
         </div>
     </div>

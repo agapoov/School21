@@ -41,11 +41,16 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'daphne',
     'django.contrib.staticfiles',
 
+    'channels',
+
+    # apps
     'users',
     'main',
     'community',
+    'groups',
 
 
 ]
@@ -58,6 +63,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'connect21.urls'
@@ -154,10 +160,43 @@ CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
 
 # Email settings
 
-# EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend" # отправка в терминал
-EMAIL_BACKEND = config('EMAIL_BACKEND')
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"  # отправка в терминал
+# EMAIL_BACKEND = config('EMAIL_BACKEND')
 EMAIL_HOST = config('EMAIL_HOST')
 EMAIL_PORT = config('EMAIL_PORT', cast=int)
 EMAIL_USE_SSL = config('EMAIL_USE_SSL', cast=bool)
 EMAIL_HOST_USER = config('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
+
+# Channels
+
+ASGI_APPLICATION = 'connect21.asgi.application'
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'INFO',
+        },
+        'groups': {
+            'handlers': ['console'],
+            'level': 'INFO',
+        },
+    },
+}

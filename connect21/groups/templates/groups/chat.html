@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'deps/css/chat.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="chat-container">
+    <div class="chat-messages" id="chat-messages">
+        <!-- Сообщения чата будут добавляться сюда -->
+    </div>
+    <input type="text" id="chat-message-input" placeholder="Введите ваше сообщение..." autocomplete="off">
+    <button id="chat-message-submit">Отправить</button>
+</div>
+<script>
+    const groupName = "{{ group_name }}";  // Передаём имя группы из контекста
+</script>
+<script src="{% static 'deps/js/chat.js' %}"></script>
+{% endblock %}
+

@@ -11,7 +11,21 @@
                 <p class="card-text custom-text">Возраст: {{ user_public_profile.age }}</p>
                 <p class="card-text custom-text">Интересы: {% if user_public_profile.interests %}{{ user_public_profile.interests }}{% else %}У пользователя пока нет интересов{% endif %}</p>
                 <p class="card-text custom-text">Дополнительная информация: {% if user_public_profile.additional_info %}{{ user_public_profile.additional_info }}{% else %}У пользователя пока нет дополнительной информации{% endif %}</p>
-                <a href="#" class="btn_21 mt-3">Пригласить в чат</a>
+                <h2 class=" custom-title">Пригласить в группу</h2>
+                {% if user_groups %}
+                    <ul class="list-group">
+                        {% for group in user_groups %}
+                            <li class="list-group-item">
+                                <form method="POST" action="{% url 'community:invite_user' user_public_profile.id group.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-primary">Пригласить в {{ group.name }}</button>
+                                </form>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>Вы не состоите в группах, чтобы приглашать пользователей.</p>
+                {% endif %}
             </div>
         </div>
     </div>
