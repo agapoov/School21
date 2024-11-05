@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.views import View
 
-from .models import ChatGroup, GroupMembership, GroupInvitation
+from .models import ChatGroup, GroupMembership, GroupInvitation, ChatMessage
 
 
 # @login_required
@@ -21,5 +21,9 @@ from .models import ChatGroup, GroupMembership, GroupInvitation
 
 
 def chat_view(request, group_name):
-    context = {'group_name': group_name}
-    return render(request, 'groups/chat.html', context)
+    group = get_object_or_404(ChatGroup, name=group_name)
+    messages = ChatMessage.objects.filter(group=group).order_by('timestamp')
+    return render(request, 'groups/chat.html', {
+        'group_name': group_name,
+        'messages': messages
+    })

@@ -8,7 +8,13 @@
 {% block content %}
 <div class="chat-container">
     <div class="chat-messages" id="chat-messages">
-        <!-- Сообщения чата будут добавляться сюда -->
+        <!-- Выводим историю сообщений -->
+        {% for message in messages %}
+            <div class="chat-message">
+                <strong>{{ message.user.username }}:</strong> {{ message.message }}
+                <span class="timestamp">{{ message.timestamp }}</span>
+            </div>
+        {% endfor %}
     </div>
     <input type="text" id="chat-message-input" placeholder="Введите ваше сообщение..." autocomplete="off">
     <button id="chat-message-submit">Отправить</button>
