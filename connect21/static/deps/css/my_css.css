@@ -91,6 +91,7 @@ footer {
     border-radius: 20px; /* Закругленные углы */
     padding: 10px 20px; /* Отступы внутри кнопки */
     transition: background-color 0.3s, transform 2s; /* Плавные переходы */
+    text-decoration: none;
 
 }
 .logo-img {
@@ -192,6 +193,25 @@ footer {
 
 .dropdown-item {
     color: #ffffff; /* Цвет текста для элементов выпадающего меню */
+}
+.public_user_profile-profile-container {
+    display: flex; /* Используем флекс для центрирования */
+    justify-content: center; /* Центрируем по горизонтали */
+    align-items: center; /* Центрируем по вертикали */
+    min-height: 100vh; /* Минимальная высота контейнера на весь экран */
+    padding: 20px; /* Отступы внутри контейнера */
+}
+.public_user_profile-card {
+    width: 100%; /* Ширина карточки на 100% от родителя */
+    max-width: 600px; /* Максимальная ширина карточки */
+    margin: 10px; /* Отступы вокруг карточки */
+    padding: 10px; /* Внутренние отступы для карточки */
+    background-color: rgba(31, 41, 58, 0.9); /* Полупрозрачный фон */
+    border-radius: 15px; /* Закругленные углы карточки */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Тень для карточки */
+    word-wrap: break-word; /* Позволяет переносить длинные слова */
+    overflow-wrap: break-word; /* Дополнительная поддержка для переносов */
+
 }
 
 .dropdown-item:hover {

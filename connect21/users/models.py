@@ -31,6 +31,6 @@ class User(AbstractUser):
         subject = f'Код подтверждения для {self.username}'
         message = (
             f'Ваш код подтверждения: {code}\n'
-            'С уважением, команда School21 💘'
+            'С уважением, команда School21'
         )
         send_two_factor_code_email_task.delay(subject, message, self.email)

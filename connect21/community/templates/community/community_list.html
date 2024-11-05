@@ -9,10 +9,10 @@
                 <div class="card border-0 rounded custom-shadow">
                     <img src="{% if user.image %}{{ user.image.url }}{% else %}{% static 'deps/images/default_logo.webp' %}{% endif %}" alt="Аватар пользователя" class="card-img-top rounded-top">
                     <div class="card-body text-center">
-                        <a href="#" class="card-link">
+                        <a href="{% url 'community:public-user-profile' username=user.username %}" class="card-link">
                             <h5 class="card-title custom-title">{{ user.username }}</h5>
                         </a>
-                        <p class="card-text custom-text">Ник в Telegram: <span class="telegram-handle">{{ user.tg_username }}</span></p>
+                        <p class="card-text custom-text">Интересы: <span class="telegram-handle">{% if user.interests %}{{ user.interests }}{% else %}У пользователя пока нет интересов{% endif %}</span></p>
                     </div>
                 </div>
             </div>

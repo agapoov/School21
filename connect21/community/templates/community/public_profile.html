@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="public_user_profile-profile-container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+        <div class="public_user_profile-card custom-shadow" style="width: 500px;">
+            <img src="{% if user_public_profile.image %}{{ user_public_profile.image.url }}{% else %}{% static 'deps/images/default_logo.webp' %}{% endif %}" alt="Аватар пользователя" class="card-img-top rounded-top">
+            <div class="public_user_profile-card-body text-center">
+                <h5 class="card-title custom-title">{{ user_public_profile.first_name }} {{ user_public_profile.last_name }}</h5>
+                <p class="card-text custom-text">Ник в Telegram: <span class="public_user_profile-telegram-handle">{{ user_public_profile.tg_username }}</span></p>
+                <p class="card-text custom-text">Возраст: {{ user_public_profile.age }}</p>
+                <p class="card-text custom-text">Интересы: {% if user_public_profile.interests %}{{ user_public_profile.interests }}{% else %}У пользователя пока нет интересов{% endif %}</p>
+                <p class="card-text custom-text">Дополнительная информация: {% if user_public_profile.additional_info %}{{ user_public_profile.additional_info }}{% else %}У пользователя пока нет дополнительной информации{% endif %}</p>
+                <a href="#" class="btn_21 mt-3">Пригласить в чат</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

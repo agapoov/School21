@@ -11,7 +11,7 @@ from django.views import View
 from django.views.generic import CreateView, UpdateView
 
 from .forms import (CustomUserCreationForm, CustomUserLoginForm,
-                    TwoFactorLoginForm, CustomUserProfileForm)
+                    CustomUserProfileForm, TwoFactorLoginForm)
 from .mixins import UserVerificationMixin
 from .models import User
 
@@ -57,7 +57,8 @@ class TwoFactorAuthView(View):
             code = form.cleaned_data['code']
             timestamp = request.session.get('timestamp')
             if timestamp and (timezone.now() - timestamp) > timedelta(minutes=5):
-                return render(request, 'users/two_factor_auth.html', {'form': form, 'error': 'Код истек', 'uuid': uuid})
+                return render(request, 'users/two_factor_auth.html', {'form': form, 'error': 'Код истек. Войдите '
+                                                                                             'заново.', 'uuid': uuid})
 
             if str(code) == str(request.session.get('two_factor_code')):
                 user_id = request.session.get('user_id')
