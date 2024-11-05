@@ -92,7 +92,9 @@ footer {
     padding: 10px 20px; /* Отступы внутри кнопки */
     transition: background-color 0.3s, transform 2s; /* Плавные переходы */
     text-decoration: none;
-
+.list-group-invite {
+    background-color: transparent;
+}
 }
 .logo-img {
     margin-left: -55px;
@@ -253,4 +255,24 @@ footer {
     color: rgba(255, 255, 255, 0.5); /* Цвет текста для неактивных элементов */
     background-color: #1f293a; /* Темный фон для неактивных кнопок */
     pointer-events: none; /* Отключаем события клика для неактивных элементов */
+}
+
+/* Стилизация полосы прокрутки для WebKit браузеров (Chrome, Safari) */
+::-webkit-scrollbar {
+    width: 6px; /* Ширина вертикальной полосы прокрутки */
+    height: 12px; /* Высота горизонтальной полосы прокрутки */
+}
+
+::-webkit-scrollbar-track {
+    background: #1f293a; /* Цвет фона полосы прокрутки */
+    border-radius: 10px; /* Закругление углов */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #00ffaf; /* Цвет самой полосы прокрутки */
+    border-radius: 10px; /* Закругление углов */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555; /* Цвет полосы прокрутки при наведении */
 }

@@ -6,6 +6,10 @@
     border-radius: 25px;
 
 }
+.list-group_revievs {
+    background-color: transparent;
+}
+
 
 .main-card-body {
     border-radius: 55px; /* Закругление углов для содержимого карточки */

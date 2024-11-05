@@ -21,13 +21,13 @@
                     </div>
                 </div>
 
-                <div class="user-chats mt-4">
+                <div class="main-card-text mt-4">
                     <h2>Ваши чаты</h2>
                     {% if user_groups %}
-                        <ul class="list-group">
+                        <ul class="list-group_revievs">
                             {% for membership in user_groups %}
                                 <li class="list-group-item">
-                                    <a href="{% url 'groups:group_chat' membership.group.name %}">{{ membership.group.name }}</a>
+                                    <a href="{% url 'groups:group_chat' membership.group.name %}" class="btn btn-primary">{{ membership.group.name }}</a>
                                 </li>
                             {% endfor %}
                         </ul>
@@ -36,10 +36,10 @@
                     {% endif %}
                 </div>
 
-                <div class="incoming-invitations mt-4">
+                <div class="main-card-text mt-4">
                     <h2>Входящие приглашения</h2>
                     {% if incoming_invitations.count > 0 %}
-                        <ul class="list-group">
+                        <ul class="list-group_revievs">
                             {% for invitation in incoming_invitations %}
                                 <li class="list-group-item">
                                     Вы получили приглашение от {{ invitation.sender.username }} в группу "{{ invitation.group.name }}"!

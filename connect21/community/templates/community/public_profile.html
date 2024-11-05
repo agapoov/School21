@@ -15,10 +15,10 @@
                 {% if user_groups %}
                     <ul class="list-group">
                         {% for group in user_groups %}
-                            <li class="list-group-item">
+                            <li class="list-group-invite">
                                 <form method="POST" action="{% url 'community:invite_user' user_public_profile.id group.id %}">
                                     {% csrf_token %}
-                                    <button type="submit" class="btn btn-primary">Пригласить в {{ group.name }}</button>
+                                    <button type="submit" class="btn_21 btn-primary">Пригласить в {{ group.name }}</button>
                                 </form>
                             </li>
                         {% endfor %}
