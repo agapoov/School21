@@ -7,7 +7,6 @@ from groups.models import GroupInvitation, GroupMembership
 
 
 def home_page(request):
-    user_groups = []  # 🤏 чут чут костылей
     if request.user.is_authenticated:
         user_groups = GroupMembership.objects.filter(user=request.user).select_related('group')
         incoming_invitations = GroupInvitation.objects.filter(receiver=request.user, status="pending")

@@ -21,20 +21,33 @@
                     </div>
                 </div>
 
-                <div class="main-card-text mt-4">
-                    <h2>Ваши чаты</h2>
-                    {% if user_groups %}
-                        <ul class="list-group_revievs">
-                            {% for membership in user_groups %}
-                                <li class="list-group-item">
-                                    <a href="{% url 'groups:group_chat' membership.group.name %}" class="btn btn-primary">{{ membership.group.name }}</a>
-                                </li>
-                            {% endfor %}
-                        </ul>
-                    {% else %}
-                        <p>У вас пока нет чатов.</p>
-                    {% endif %}
+                <div class="container mt-4">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <div class="main-card text-center rounded-3 shadow">
+                                <div class="main-card-body">
+                                    {% if request.user.is_authenticated %}
+                                        <h2 class="animated-title">Ваши чаты</h2>
+                                        {% if user_groups %}
+                                            <ul class="list-group_revievs">
+                                                {% for membership in user_groups %}
+                                                    <li class="list-group-item">
+                                                        <a href="{% url 'groups:group_chat' membership.group.name %}" class="btn_21 btn-primary">{{ membership.group.name }}</a>
+                                                    </li>
+                                                {% endfor %}
+                                            </ul>
+                                        {% else %}
+                                            <p class="main-card-text">У вас пока нет чатов.</p>
+                                        {% endif %}
+                                    {% else %}
+                                        <p class="main-card-text">Войдите в аккаунт чтобы вас могли пригласить в чат</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
 
                 <div class="main-card-text mt-4">
                     {% if incoming_invitations.count > 0 %}
