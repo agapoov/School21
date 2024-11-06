@@ -1,5 +1,6 @@
 asgiref==3.8.1
 attrs==24.2.0
+django-celery-beat==2.7.0
 autobahn==24.4.2
 Automat==24.8.1
 billiard==4.2.1

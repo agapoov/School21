@@ -4,7 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import DetailView, ListView
-
+from django.db.models import Q
 from groups.models import ChatGroup, GroupInvitation, GroupMembership
 from users.models import User
 
@@ -54,15 +54,11 @@ def invite_user(request, user_id, group_id):
     group = get_object_or_404(ChatGroup, id=group_id)
 
     if request.method == 'POST':
-        existing_invitation = GroupInvitation.objects.filter(
-            group=group,
-            sender=request.user,
-            receiver=invited_user,
-            status="pending"
-        ).exists()
-
-        if existing_invitation:
-            messages.warning(request, 'Вы уже пригласили этого пользователя')
+        if GroupMembership.objects.filter(group=group, user=invited_user).exists() or \
+                GroupInvitation.objects.filter(
+                    Q(group=group) & Q(receiver=invited_user) & Q(status="pending")
+                ).exists():
+            messages.warning(request, 'Пользователь является членом группы или уже был в нее приглашен.')
             return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
         GroupInvitation.objects.create(
@@ -73,6 +69,6 @@ def invite_user(request, user_id, group_id):
         )
         # TODO отправка письма о приглашении получателю
         messages.success(request, f'Вы пригласили пользователя {invited_user.username} в чат')
-        return redirect('community:community-list')
+        return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
     return HttpResponse(status=405)

@@ -37,8 +37,8 @@
                 </div>
 
                 <div class="main-card-text mt-4">
-                    <h2>Входящие приглашения</h2>
                     {% if incoming_invitations.count > 0 %}
+                        <h2>Входящие приглашения</h2>
                         <ul class="list-group_revievs">
                             {% for invitation in incoming_invitations %}
                                 <li class="list-group-item">
@@ -51,8 +51,6 @@
                                 </li>
                             {% endfor %}
                         </ul>
-                    {% else %}
-                        <p>У вас пока нет входящих приглашений.</p>
                     {% endif %}
                 </div>
             </div>
