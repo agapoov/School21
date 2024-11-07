@@ -1,14 +1,18 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import get_object_or_404, redirect, render
-from django.views.generic import DetailView, ListView
+from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
+from django.http import (HttpResponse, HttpResponseBadRequest,
+                         HttpResponseRedirect)
+from django.shortcuts import get_object_or_404, redirect, render
+from django.views.decorators.http import require_POST
+from django.views.generic import CreateView, DetailView, ListView
+
 from groups.models import ChatGroup, GroupInvitation, GroupMembership
 from users.models import User
 
-from .utils import q_search
+from .utils import check_and_invite_user, q_search
 
 
 class UserCommunityView(LoginRequiredMixin, ListView):
@@ -49,26 +53,20 @@ class PublicProfileView(LoginRequiredMixin, DetailView):
 
 
 @login_required
+@require_POST
 def invite_user(request, user_id, group_id):
-    invited_user = get_object_or_404(User, id=user_id)
-    group = get_object_or_404(ChatGroup, id=group_id)
+    try:
+        invited_user = get_object_or_404(User, id=user_id)
+        group = get_object_or_404(ChatGroup, id=group_id)
 
-    if request.method == 'POST':
-        if GroupMembership.objects.filter(group=group, user=invited_user).exists() or \
-                GroupInvitation.objects.filter(
-                    Q(group=group) & Q(receiver=invited_user) & Q(status="pending")
-                ).exists():
+        if check_and_invite_user(request, invited_user, group):
+            messages.success(request, f'Вы пригласили пользователя {invited_user.username} в чат')
+        else:
             messages.warning(request, 'Пользователь является членом группы или уже был в нее приглашен.')
-            return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
-        GroupInvitation.objects.create(
-            group=group,
-            sender=request.user,  # TODO сделать отправку писем о состоянии приглашения
-            receiver=invited_user,
-            status="pending"
-        )
-        # TODO отправка письма о приглашении получателю
-        messages.success(request, f'Вы пригласили пользователя {invited_user.username} в чат')
-        return HttpResponseRedirect(request.META['HTTP_REFERER'])
+    except ObjectDoesNotExist:
+        messages.warning(request, 'Пользователя или группы не существует.')
+    except Exception as e:
+        messages.warning(request, f'Непредвиденная ошибка: {str(e)}')
 
-    return HttpResponse(status=405)
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])
