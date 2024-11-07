@@ -88,35 +88,6 @@ class TwoFactorAuthView(TitleMixin, FormView):
     def get_success_url(self):
         return reverse('main:index')
 
-# class TwoFactorAuthView(TitleMixin, View):
-#     title = 'Connect21 - 2FA Auth'
-#
-#     def get(self, request, uuid):
-#         form = TwoFactorLoginForm()
-#         return render(request, 'users/two_factor_auth.html', {'form': form, 'uuid': uuid})
-#
-#     def post(self, request, uuid):
-#         form = TwoFactorLoginForm(request.POST)
-#         if form.is_valid():
-#             code = form.cleaned_data['code']
-#             timestamp = request.session.get('timestamp')
-#             if timestamp and (timezone.now() - timestamp) > timedelta(minutes=5):
-#                 return render(request, 'users/two_factor_auth.html', {'form': form, 'error': 'Код истек. Войдите '
-#                                                                                              'заново.', 'uuid': uuid})
-#
-#             if str(code) == str(request.session.get('two_factor_code')):
-#                 user_id = request.session.get('user_id')
-#                 user = User.objects.get(id=user_id)
-#                 login(request, user)
-#                 messages.success(request, 'Добро пожаловать')
-#                 del request.session['two_factor_code']
-#                 del request.session['user_id']
-#                 del request.session['verification_uuid']
-#                 return redirect('main:index')
-#             else:
-#                 return render(request, 'users/two_factor_auth.html', {'form': form, 'error': 'Неверный код', 'uuid': uuid})
-#         return render(request, 'users/two_factor_auth.html', {'form': form, 'uuid': uuid})
-
 
 class CustomProfileView(TitleMixin, LoginRequiredMixin, UpdateView):
     model = User
