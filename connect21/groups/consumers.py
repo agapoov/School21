@@ -1,9 +1,8 @@
 import json
-import logging
 
 from channels.db import database_sync_to_async
 from channels.generic.websocket import AsyncWebsocketConsumer
-
+from django.utils import timezone
 from .models import ChatGroup, ChatMessage
 
 
@@ -25,23 +24,29 @@ class ChatConsumer(AsyncWebsocketConsumer):
         group = await database_sync_to_async(ChatGroup.objects.get)(name=self.group_name)
         user = self.scope["user"]
 
-        await self.save_message(group, user, message)
+        # Save message with timestamp
+        message_obj = await self.save_message(group, user, message)
 
+        # Send message to WebSocket
         await self.channel_layer.group_send(
             self.room_group_name,
             {
                 'type': 'chat_message',
                 'message': message,
-                'username': user.username
+                'username': user.username,
+                'timestamp': message_obj.timestamp.strftime('%d.%m.%Y, %H:%M:%S')  # format timestamp here
             }
         )
 
     async def chat_message(self, event):
         message = event['message']
         username = event['username']
+        timestamp = event['timestamp']
+
         await self.send(text_data=json.dumps({
             'message': message,
-            'username': username
+            'username': username,
+            'timestamp': timestamp
         }))
 
     @database_sync_to_async

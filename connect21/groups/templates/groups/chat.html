@@ -11,7 +11,7 @@
         {% for message in messages %}
             <div class="chat-message">
                 <strong>{{ message.user.username }}:</strong> {{ message.message }}
-                <span class="timestamp">{{ message.timestamp }}</span>
+                <span class="timestamp">{{ message.timestamp|date:"d.m.Y, H:i:s" }}</span>
             </div>
         {% endfor %}
     </div>
@@ -23,4 +23,3 @@
 </script>
 <script src="{% static 'deps/js/chat.js' %}"></script>
 {% endblock %}
-

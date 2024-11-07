@@ -222,7 +222,7 @@ footer {
 
 .pagination {
     border-radius: 20px; /* Полузакругленные края */
-    background-color: rgba(31, 41, 58, 0.8); /* Полупрозрачный фон */
+    background-color: transparent; /* Полупрозрачный фон */
     padding: 10px; /* Отступы внутри пагинации */
 }
 

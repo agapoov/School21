@@ -2,47 +2,72 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
-
+from django.views.generic import TemplateView
+from django.views import View
 from groups.models import GroupInvitation, GroupMembership
+from main.mixins import TitleMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-def home_page(request):
-    if request.user.is_authenticated:
-        user_groups = GroupMembership.objects.filter(user=request.user).select_related('group')
-        incoming_invitations = GroupInvitation.objects.filter(receiver=request.user, status="pending")
+class HomeView(TitleMixin, TemplateView):
+    title = 'Connect21 - Главная'
+    template_name = 'main/home.html'
 
-        return render(request, 'main/home.html', {
-            'user_groups': user_groups,
-            'incoming_invitations': incoming_invitations,
-        })
-    return render(request, 'main/home.html')
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if self.request.user.is_authenticated:
+            context['user_groups'] = GroupMembership.objects.filter(user=self.request.user).select_related('group')
+            context['incoming_invitations'] = GroupInvitation.objects.filter(receiver=self.request.user, status='pending')
+        return context
 
 
-@login_required
-def respond_invitation(request, invitation_id):
-    invitation = get_object_or_404(GroupInvitation, id=invitation_id)
+class RespondInvitationView(View):
+    def post(self, request, invitation_id):
+        invitation = get_object_or_404(GroupInvitation, id=invitation_id)
 
-    if request.method == "POST":
-        if request.POST.get('response') == 'accept':
+        response = request.POST.get('response')
+        if response == 'accept':
             invitation.status = 'accepted'
             invitation.save()
-
             GroupMembership.objects.create(
                 user=request.user,
                 group=invitation.group
             )
             messages.success(request, "Приглашение принято!")
-        elif request.POST.get('response') == 'decline':
+        elif response == 'decline':
             invitation.status = 'declined'
             invitation.save()
             messages.info(request, "Приглашение отклонено.")
 
-    return HttpResponseRedirect(request.META['HTTP_REFERER'])
+        return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
+
+# @login_required
+# def respond_invitation(request, invitation_id):
+#     invitation = get_object_or_404(GroupInvitation, id=invitation_id)
+#
+#     if request.method == "POST":
+#         if request.POST.get('response') == 'accept':
+#             invitation.status = 'accepted'
+#             invitation.save()
+#
+#             GroupMembership.objects.create(
+#                 user=request.user,
+#                 group=invitation.group
+#             )
+#             messages.success(request, "Приглашение принято!")
+#         elif request.POST.get('response') == 'decline':
+#             invitation.status = 'declined'
+#             invitation.save()
+#             messages.info(request, "Приглашение отклонено.")
+#
+#     return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
 
 def page_not_found(request, exception):
     return render(request, '404.html', status=404)
 
 
-def about(request):
-    return render(request, 'main/about.html')
+class AboutView(TitleMixin, TemplateView):
+    title = 'Connect21 - О нас'
+    template_name = 'main/about.html'

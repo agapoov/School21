@@ -1,11 +1,11 @@
 from django.urls import path
 
-from .views import about, home_page, respond_invitation
+from .views import AboutView, HomeView, RespondInvitationView
 
 app_name = 'main'
 
 urlpatterns = [
-    path('', home_page, name='index'),
-    path('about/', about, name='about'),
-    path('invite/respond/<int:invitation_id>/', respond_invitation, name='respond_invitation'),
+    path('', HomeView.as_view(), name='index'),
+    path('about/', AboutView.as_view(), name='about'),
+    path('invite/respond/<int:invitation_id>/', RespondInvitationView.as_view(), name='respond_invitation'),
 ]

@@ -6,12 +6,17 @@ chatSocket.onmessage = function(e) {
     const data = JSON.parse(e.data);
     const message = data.message;
     const username = data.username;
+    const timestamp = data.timestamp;  // Получаем timestamp
 
-    document.querySelector('#chat-messages').innerHTML += (` 
-        <div class="chat-message">
-            <strong>${username}:</strong> ${message}
-        </div>
-    `);
+    const messageElement = document.createElement('div');
+    messageElement.classList.add('chat-message');
+
+    messageElement.innerHTML = `
+        <strong>${username}:</strong> ${message}
+        <span class="timestamp">${timestamp}</span>
+    `;
+
+    document.querySelector('#chat-messages').appendChild(messageElement);
 };
 
 chatSocket.onclose = function(e) {
