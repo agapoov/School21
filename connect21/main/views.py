@@ -43,28 +43,6 @@ class RespondInvitationView(View):
         return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
 
-# @login_required
-# def respond_invitation(request, invitation_id):
-#     invitation = get_object_or_404(GroupInvitation, id=invitation_id)
-#
-#     if request.method == "POST":
-#         if request.POST.get('response') == 'accept':
-#             invitation.status = 'accepted'
-#             invitation.save()
-#
-#             GroupMembership.objects.create(
-#                 user=request.user,
-#                 group=invitation.group
-#             )
-#             messages.success(request, "Приглашение принято!")
-#         elif request.POST.get('response') == 'decline':
-#             invitation.status = 'declined'
-#             invitation.save()
-#             messages.info(request, "Приглашение отклонено.")
-#
-#     return HttpResponseRedirect(request.META['HTTP_REFERER'])
-
-
 def page_not_found(request, exception):
     return render(request, '404.html', status=404)
 

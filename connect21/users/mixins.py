@@ -1,5 +1,7 @@
 import uuid
 
+from django.utils.timezone import now
+
 
 class UserVerificationMixin:
 
@@ -10,5 +12,6 @@ class UserVerificationMixin:
         self.request.session['user_id'] = user.id
         verification_uuid = uuid.uuid4()
         self.request.session['verification_uuid'] = str(verification_uuid)
+        self.request.session['timestamp'] = now().strftime('%Y-%m-%d %H:%M:%S')
 
         return verification_uuid

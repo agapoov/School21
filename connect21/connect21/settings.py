@@ -202,3 +202,7 @@ LOGGING = {
         },
     },
 }
+
+# PROJECT SETTINGS
+
+CODE_LIFETIME_MINUTES = 5

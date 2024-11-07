@@ -1,5 +1,10 @@
+from datetime import datetime, timedelta
+
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
+from django.utils import timezone
+
+from connect21.settings import CODE_LIFETIME_MINUTES
 
 from .models import User
 
@@ -74,6 +79,27 @@ class CustomUserCreationForm(UserCreationForm):
 
 class TwoFactorLoginForm(forms.Form):
     code = forms.IntegerField(label='Код подтверждения')
+
+    class TwoFactorLoginForm(forms.Form):
+        code = forms.IntegerField(label='Код подтверждения')
+
+        def clean_code(self):
+            code = self.cleaned_data.get('code')
+            timestamp_str = self.initial.get('timestamp')
+
+            if not timestamp_str:
+                raise forms.ValidationError('Время начала сессии не найдено. Попробуйте войти снова.')
+
+            timestamp = datetime.strptime(timestamp_str, '%Y-%m-%d %H:%M:%S')
+            timestamp = timezone.make_aware(timestamp, timezone.get_current_timezone())
+
+            if (timezone.now() - timestamp) > timedelta(minutes=CODE_LIFETIME_MINUTES):
+                raise forms.ValidationError('Код истек. Войдите заново.')
+
+            if not code or len(str(code)) != 6:
+                raise forms.ValidationError('Код должен состоять из 6 цифр.')
+
+            return code
 
 
 class CustomUserProfileForm(forms.ModelForm):

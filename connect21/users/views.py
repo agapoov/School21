@@ -1,13 +1,10 @@
-from datetime import timedelta
-
 from django.contrib import messages
 from django.contrib.auth import login
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.shortcuts import redirect, render
 from django.urls import reverse, reverse_lazy
-from django.utils import timezone
-from django.views import View
+
 from django.views.generic import CreateView, UpdateView
 from django.views.generic.edit import FormView
 
@@ -53,15 +50,10 @@ class TwoFactorAuthView(TitleMixin, FormView):
     template_name = 'users/two_factor_auth.html'
 
     def get_initial(self):
-        return {'uuid': self.kwargs['uuid']}
+        return {'uuid': self.kwargs['uuid'], 'timestamp': self.request.session.get('timestamp')}
 
     def form_valid(self, form):
         code = form.cleaned_data['code']
-        timestamp = self.request.session.get('timestamp')
-
-        if timestamp and (timezone.now() - timestamp) > timedelta(minutes=5):
-            form.add_error(None, 'Код истек. Войдите заново.')
-            return self.form_invalid(form)
 
         if str(code) == str(self.request.session.get('two_factor_code')):
             user_id = self.request.session.get('user_id')
@@ -101,7 +93,6 @@ class CustomProfileView(TitleMixin, LoginRequiredMixin, UpdateView):
 
     def form_valid(self, form):
         user = form.save(commit=False)
-        user.is_free = form.cleaned_data.get('available')
         user.save()
         messages.success(self.request, 'Профиль успешно обновлен')
         return super().form_valid(form)
