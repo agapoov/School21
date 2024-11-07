@@ -118,8 +118,9 @@ class TwoFactorAuthView(TitleMixin, FormView):
 #         return render(request, 'users/two_factor_auth.html', {'form': form, 'uuid': uuid})
 
 
-class CustomProfileView(LoginRequiredMixin, UpdateView):
+class CustomProfileView(TitleMixin, LoginRequiredMixin, UpdateView):
     model = User
+    title = 'Connect21 - Редактирование профиля'
     template_name = 'users/profile.html'
     form_class = CustomUserProfileForm
     success_url = reverse_lazy('users:profile')
@@ -137,11 +138,6 @@ class CustomProfileView(LoginRequiredMixin, UpdateView):
     def form_invalid(self, form):
         messages.warning(self.request, 'Произошла ошибка')
         return super().form_invalid(form)
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = 'Редактирование профиля'
-        return context
 
 
 def forgot_password(request):

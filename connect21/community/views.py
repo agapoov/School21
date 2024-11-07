@@ -10,12 +10,14 @@ from django.views.decorators.http import require_POST
 from django.views.generic import CreateView, DetailView, ListView
 
 from groups.models import ChatGroup, GroupInvitation, GroupMembership
+from main.mixins import TitleMixin
 from users.models import User
 
 from .utils import check_and_invite_user, q_search
 
 
-class UserCommunityView(LoginRequiredMixin, ListView):
+class UserCommunityView(TitleMixin, LoginRequiredMixin, ListView):
+    title = 'Connect21 - Список пользователей'
     model = User
     template_name = 'community/community_list.html'
     context_object_name = 'users'
@@ -30,14 +32,10 @@ class UserCommunityView(LoginRequiredMixin, ListView):
 
         return queryset
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = 'Список пользователей'
-        return context
 
-
-class PublicProfileView(LoginRequiredMixin, DetailView):
+class PublicProfileView(TitleMixin, LoginRequiredMixin, DetailView):
     model = User
+    title = 'Connect21 - Профиль пользователя'
     template_name = 'community/public_profile.html'
     context_object_name = 'user_public_profile'
 
