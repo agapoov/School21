@@ -5,16 +5,18 @@ from django.contrib.auth import login
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.shortcuts import redirect, render
-from django.urls import reverse_lazy, reverse
+from django.urls import reverse, reverse_lazy
 from django.utils import timezone
 from django.views import View
 from django.views.generic import CreateView, UpdateView
 from django.views.generic.edit import FormView
+
+from main.mixins import TitleMixin
+
 from .forms import (CustomUserCreationForm, CustomUserLoginForm,
                     CustomUserProfileForm, TwoFactorLoginForm)
 from .mixins import UserVerificationMixin
 from .models import User
-from main.mixins import TitleMixin
 
 
 class CustomLoginView(TitleMixin, UserVerificationMixin, LoginView):

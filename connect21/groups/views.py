@@ -22,6 +22,7 @@ from .models import ChatGroup, ChatMessage, GroupInvitation, GroupMembership
 def chat_view(request, group_name):
     group = get_object_or_404(ChatGroup, name=group_name)
     messages = ChatMessage.objects.filter(group=group).order_by('timestamp')
+    request.session['user_id'] = request.user.id
     return render(request, 'groups/chat.html', {
         'group_name': group_name,
         'messages': messages

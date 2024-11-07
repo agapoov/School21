@@ -2,7 +2,7 @@ import json
 
 from channels.db import database_sync_to_async
 from channels.generic.websocket import AsyncWebsocketConsumer
-from django.utils import timezone
+
 from .models import ChatGroup, ChatMessage
 
 
@@ -11,8 +11,14 @@ class ChatConsumer(AsyncWebsocketConsumer):
         self.group_name = self.scope['url_route']['kwargs']['group_name']
         self.room_group_name = f'chat_{self.group_name}'
 
-        await self.channel_layer.group_add(self.room_group_name, self.channel_name)
-        await self.accept()
+        session = self.scope["session"]
+        user_id = session.get('user_id')
+
+        if user_id:
+            await self.channel_layer.group_add(self.room_group_name, self.channel_name)
+            await self.accept()
+        else:
+            await self.close()
 
     async def disconnect(self, close_code):
         await self.channel_layer.group_discard(self.room_group_name, self.channel_name)
@@ -21,32 +27,39 @@ class ChatConsumer(AsyncWebsocketConsumer):
         data = json.loads(text_data)
         message = data['message']
 
+        if not self.scope["session"].get('user_id'):
+            return
+
         group = await database_sync_to_async(ChatGroup.objects.get)(name=self.group_name)
         user = self.scope["user"]
 
-        # Save message with timestamp
         message_obj = await self.save_message(group, user, message)
 
-        # Send message to WebSocket
         await self.channel_layer.group_send(
             self.room_group_name,
             {
                 'type': 'chat_message',
                 'message': message,
                 'username': user.username,
-                'timestamp': message_obj.timestamp.strftime('%d.%m.%Y, %H:%M:%S')  # format timestamp here
+                'timestamp': message_obj.timestamp.strftime('%H:%M'),
+                'user_id': self.scope["session"].get('user_id'),
             }
         )
 
     async def chat_message(self, event):
         message = event['message']
         username = event['username']
+        user_id = event['user_id']
         timestamp = event['timestamp']
+
+        is_user_message = str(user_id) == str(self.scope["session"].get('user_id'))
 
         await self.send(text_data=json.dumps({
             'message': message,
             'username': username,
-            'timestamp': timestamp
+            'user_id': user_id,
+            'timestamp': timestamp,
+            'is_user_message': is_user_message,
         }))
 
     @database_sync_to_async
@@ -54,5 +67,5 @@ class ChatConsumer(AsyncWebsocketConsumer):
         return ChatMessage.objects.create(
             group=group,
             user=user,
-            message=message_content
+            message=message_content,
         )

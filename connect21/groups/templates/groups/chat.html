@@ -9,17 +9,23 @@
 <div class="chat-container">
     <div class="chat-messages" id="chat-messages">
         {% for message in messages %}
-            <div class="chat-message">
-                <strong>{{ message.user.username }}:</strong> {{ message.message }}
-                <span class="timestamp">{{ message.timestamp|date:"d.m.Y, H:i:s" }}</span>
+            <div class="chat-message {% if message.user == request.user %}user-message{% else %}other-message{% endif %}">
+                <span class="username">{{ message.user.username }}</span>
+                <div class="message-content">{{ message.message }}</div>
+                <span class="timestamp">{{ message.timestamp|date:"H:i" }}</span>
             </div>
         {% endfor %}
     </div>
-    <input type="text" id="chat-message-input" placeholder="Введите ваше сообщение..." autocomplete="off">
-    <button id="chat-message-submit">Отправить</button>
+    <div class="message-input-container" id="chat-controls">
+        <textarea id="chat-message-input" placeholder="Введите ваше сообщение..." rows="1"></textarea>
+        <button id="chat-message-submit" class="send-btn">
+            <i class="bi bi-send"></i>
+        </button>
+    </div>
 </div>
 <script>
     const groupName = "{{ group_name }}";
+    const currentUser = "{{ user.username }}";
 </script>
 <script src="{% static 'deps/js/chat.js' %}"></script>
 {% endblock %}

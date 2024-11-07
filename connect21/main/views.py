@@ -1,12 +1,13 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
-from django.views.generic import TemplateView
 from django.views import View
+from django.views.generic import TemplateView
+
 from groups.models import GroupInvitation, GroupMembership
 from main.mixins import TitleMixin
-from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class HomeView(TitleMixin, TemplateView):
