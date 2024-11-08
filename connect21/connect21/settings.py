@@ -101,7 +101,7 @@ DATABASES = {
         'NAME': config('DATABASE_NAME', default='default_db_name'),
         'USER': config('DATABASE_USER', default='default_user'),
         'PASSWORD': config('POSTGRES_PASSWORD', default='default_password'),
-        'HOST': 'db',
+        'HOST': 'db',  # localhost
         'PORT': config('DATABASE_PORT', default='5432'),
     }
 }
