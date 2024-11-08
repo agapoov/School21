@@ -130,6 +130,7 @@ docker-compose down
 ![Страница ввода кода](connect21/static/deps/project_images/input_code.png)
 ![Главная страница](connect21/static/deps/project_images/main_page.png)
 ![Страница профиля](connect21/static/deps/project_images/profile_page.png)
+![Чат](connect21/static/deps/project_images/chat.png)
 ## Лицензия
 
 
