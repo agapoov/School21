@@ -1,0 +1,79 @@
+services:
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: ${DATABASE_NAME}
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - app_network
+
+  redis:
+    image: redis:6.2.16
+    ports:
+      - "6379:6379"
+    networks:
+      - app_network
+
+    container_name: school21-redis
+
+  celery:
+    build: .
+    environment:
+      - DJANGO_SETTINGS_MODULE=connect21.settings
+      - PYTHONPATH=/app:/app/connect21
+    env_file:
+      - .env
+    command: celery -A connect21 worker -l info -P eventlet
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+      - redis
+      - web
+    networks:
+      - app_network
+
+  celery-beat:
+    build: .
+    environment:
+      - DJANGO_SETTINGS_MODULE=connect21.settings
+      - PYTHONPATH=/app:/app/connect21
+    env_file:
+      - .env
+    command: celery -A connect21 beat -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+      - redis
+      - web
+    networks:
+      - app_network
+
+  web:
+    build: .
+    command: python connect21/manage.py runserver 0.0.0.0:8000
+    environment:
+      - DJANGO_SETTINGS_MODULE=connect21.settings
+      - PYTHONPATH=/app:/app/connect21
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+      - redis
+    ports:
+      - "8000:8000"
+    networks:
+      - app_network
+
+networks:
+  app_network:
+    driver: bridge
+
+volumes:
+  postgres_data:

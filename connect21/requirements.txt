@@ -27,7 +27,7 @@ isort==5.13.2
 kombu==5.4.2
 msgpack==1.1.0
 prompt_toolkit==3.0.48
-psycopg2==2.9.10
+psycopg2-binary==2.9.10
 pyasn1==0.6.1
 pyasn1_modules==0.4.1
 pycparser==2.22

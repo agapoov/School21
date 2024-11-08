@@ -97,12 +97,12 @@ LOGIN_URL = 'users:login'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': config('DATABASE_NAME'),
-        'USER': config('DATABASE_USER'),
-        'PASSWORD': config('POSTGRES_PASSWORD'),
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': config('DATABASE_NAME', default='default_db_name'),
+        'USER': config('DATABASE_USER', default='default_user'),
+        'PASSWORD': config('POSTGRES_PASSWORD', default='default_password'),
+        'HOST': 'db',
+        'PORT': config('DATABASE_PORT', default='5432'),
     }
 }
 
@@ -155,9 +155,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Celery
 
-CELERY_BROKER_URL = 'redis://127.0.0.1:6379'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+CELERY_BROKER_URL = f'redis://{config("REDIS_HOST", default="localhost")}:{config("REDIS_PORT", default=6379)}'
+CELERY_RESULT_BACKEND = f'redis://{config("REDIS_HOST", default="localhost")}:{config("REDIS_PORT", default=6379)}/0'
 
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'Europe/Moscow'
 
 # Email settings
 
@@ -178,7 +182,7 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            "hosts": [('127.0.0.1', 6379)],
+            "hosts": [('redis', 6379)],
         },
     },
 }
