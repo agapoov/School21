@@ -71,12 +71,16 @@ docker-compose up --build
 - `celery`: контейнер с Celery worker.
 - `celery-beat`: контейнер с Celery Beat для планирования задач.
 
-### 5. Выполнение миграций
+### 5. Выполнение миграций и собрание статики
 
 После того как контейнеры запустятся, выполните миграции базы данных:
 
 ```bash
 docker exec -it school21-web-1 python connect21/manage.py migrate
+```
+
+```bash
+docker exec -it school21-web-1 python connect21/manage.py collectstatic
 ```
 
 ### 6. Создание суперпользователя

@@ -44,7 +44,7 @@ class RespondInvitationView(View):
 
 
 def page_not_found(request, exception):
-    return render(request, '404.html', status=404)
+    return render(request, '404.html', status=404, context={'title': 'Connect21 - Страница не найдена'})
 
 
 class AboutView(TitleMixin, TemplateView):

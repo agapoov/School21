@@ -10,4 +10,8 @@ env/
 venv/
 .idea
 media/
-.coverage
+
+var
+log
+
+staticfiles

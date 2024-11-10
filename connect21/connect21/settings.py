@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-xa+zea-(+pxk)qt6b^enx7%hw+gyvnyzrjp+!4g&ov5h3hh-dh'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1',
                  'localhost',
@@ -101,10 +101,15 @@ DATABASES = {
         'NAME': config('DATABASE_NAME', default='default_db_name'),
         'USER': config('DATABASE_USER', default='default_user'),
         'PASSWORD': config('POSTGRES_PASSWORD', default='default_password'),
-        'HOST': 'db',  # localhost
+        'HOST': config('DATABASE_HOST', default='localhost'),  # localhost
         'PORT': config('DATABASE_PORT', default='5432'),
     }
 }
+
+CSRF_TRUSTED_ORIGINS = [
+    'http://localhost:8000',
+    'http://127.0.0.1:8000',
+]
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -141,12 +146,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
-
-MEDIA_URL = 'media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -167,7 +176,7 @@ CELERY_TIMEZONE = 'Europe/Moscow'
 
 # EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"  # Для того чтобы отправлять почту в терминал
                                                             # раскомментируйте данную строку и закомментируйте нижнюю
-EMAIL_BACKEND = config('EMAIL_BACKEND')  # Эту :)
+EMAIL_BACKEND = config('EMAIL_BACKEND')  # Эту :
 EMAIL_HOST = config('EMAIL_HOST')
 EMAIL_PORT = config('EMAIL_PORT', cast=int)
 EMAIL_USE_SSL = config('EMAIL_USE_SSL', cast=bool)

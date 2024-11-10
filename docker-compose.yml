@@ -8,6 +8,7 @@ services:
       - "8000:8000"
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./connect21/staticfiles:/app/connect21/staticfiles
     depends_on:
       - web
     networks:
