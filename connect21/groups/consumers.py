@@ -8,8 +8,8 @@ from .models import ChatGroup, ChatMessage
 
 class ChatConsumer(AsyncWebsocketConsumer):
     async def connect(self):
-        self.group_name = self.scope['url_route']['kwargs']['group_name']
-        self.room_group_name = f'chat_{self.group_name}'
+        self.group_uuid = self.scope['url_route']['kwargs']['group_uuid']
+        self.room_group_name = f'chat_{self.group_uuid}'
 
         session = self.scope["session"]
         user_id = session.get('user_id')
@@ -30,7 +30,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
         if not self.scope["session"].get('user_id'):
             return
 
-        group = await database_sync_to_async(ChatGroup.objects.get)(name=self.group_name)
+        group = await database_sync_to_async(ChatGroup.objects.get)(uuid=self.group_uuid)
         user = self.scope["user"]
 
         message_obj = await self.save_message(group, user, message)

@@ -15,3 +15,6 @@ var
 log
 
 staticfiles
+dump.rdb
+/dump.rdb
+

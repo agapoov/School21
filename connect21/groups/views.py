@@ -20,8 +20,8 @@ from .models import ChatGroup, ChatMessage, GroupMembership
 #     return render(request, 'create_group.html')
 
 
-def chat_view(request, group_name):
-    group = get_object_or_404(ChatGroup, name=group_name)
+def chat_view(request, group_uuid):
+    group = get_object_or_404(ChatGroup, uuid=group_uuid)
 
     if not GroupMembership.objects.filter(group=group, user=request.user).exists():
         return HttpResponseForbidden("Access Denied. You are not a member of this group.")
@@ -29,7 +29,7 @@ def chat_view(request, group_name):
     messages = ChatMessage.objects.filter(group=group).order_by('timestamp')
     request.session['user_id'] = request.user.id
     return render(request, 'groups/chat.html', {
-        'group_name': group_name,
+        'group': group,
         'messages': messages,
-        'title': f'Connect21 - Чат {group_name}'
+        'title': f'Connect21 - Чат {group.name}'
     })

@@ -28,17 +28,17 @@
                                 <div class="main-card-body">
                                     {% if request.user.is_authenticated %}
                                         <h2 class="animated-title">Ваши чаты</h2>
-                                        {% if user_groups %}
-                                            <ul class="list-group_revievs">
-                                                {% for membership in user_groups %}
-                                                    <li class="list-group-item">
-                                                        <a href="{% url 'groups:group_chat' membership.group.name %}" class="btn_21 btn-primary">{{ membership.group.name }}</a>
-                                                    </li>
-                                                {% endfor %}
-                                            </ul>
-                                        {% else %}
-                                            <p class="main-card-text">У вас пока нет чатов.</p>
-                                        {% endif %}
+                                            {% if user_groups %}
+                                                <ul class="list-group_revievs">
+                                                    {% for membership in user_groups %}
+                                                        <li class="list-group-item">
+                                                            <a href="{% url 'groups:group_chat' membership.group.uuid %}" class="btn_21">{{ membership.group.name }}</a>
+                                                        </li>
+                                                    {% endfor %}
+                                                </ul>
+                                            {% else %}
+                                                <p class="main-card-text">У вас пока нет чатов.</p>
+                                            {% endif %}
                                     {% else %}
                                         <p class="main-card-text">Войдите в аккаунт чтобы вас могли пригласить в чат</p>
                                     {% endif %}

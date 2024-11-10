@@ -1,7 +1,7 @@
 (() => {
     const MAX_CHARACTERS = 1000; // Максимальное количество символов
     const chatSocket = new WebSocket(
-        'ws://' + window.location.host + '/ws/chat/' + groupName + '/'
+        'ws://' + window.location.host + '/ws/chat/' + groupUuid + '/' // Используем groupSlug
     );
 
     chatSocket.onmessage = function (e) {

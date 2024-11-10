@@ -1,12 +1,19 @@
 from django.db import models
 
 from users.models import User
+import uuid
 
 
 class ChatGroup(models.Model):
     name = models.CharField(max_length=255)
     interest = models.CharField(max_length=255)
     description = models.TextField(blank=True)
+    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+
+    def save(self, *args, **kwargs):
+        if not self.uuid:
+            self.uuid = uuid.uuid4()
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.name
@@ -19,6 +26,9 @@ class GroupMembership(models.Model):
 
     class Meta:
         unique_together = ('user', 'group')
+
+    def __str__(self):
+        return f'User: {self.user}, Group: {self.group}'
 
 
 class GroupInvitation(models.Model):

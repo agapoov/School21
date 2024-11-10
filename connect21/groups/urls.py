@@ -5,6 +5,6 @@ from .views import chat_view
 app_name = 'groups'
 
 urlpatterns = [
-    path('chat/<str:group_name>/', chat_view, name='group_chat'),
+    path('chat/<uuid:group_uuid>/', chat_view, name='group_chat'),
 
 ]
