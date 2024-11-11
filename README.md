@@ -44,9 +44,13 @@ cp .env.example .env
 
 Пример содержимого `.env`:
 ```env
+DEBUG=False
+
 DATABASE_NAME=<database_name>
 DATABASE_USER=<database_owner_name>
 POSTGRES_PASSWORD=<your_password>
+DATABASE_HOST=db
+
 REDIS_HOST=school21-redis
 REDIS_PORT=6379
 
@@ -72,6 +76,7 @@ docker-compose up --build
 - `redis`: контейнер с Redis для Celery.
 - `celery`: контейнер с Celery worker.
 - `celery-beat`: контейнер с Celery Beat для планирования задач.
+- `nginx`: контейнер для проксирования запросов
 
 ### 5. Выполнение миграций и собрание статики
 
