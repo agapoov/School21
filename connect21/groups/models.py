@@ -1,14 +1,16 @@
+import uuid
+
 from django.db import models
 
 from users.models import User
-import uuid
 
 
 class ChatGroup(models.Model):
     name = models.CharField(max_length=255)
     interest = models.CharField(max_length=255)
-    description = models.TextField(blank=True)
+    description = models.TextField(blank=True, max_length=255)
     uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def save(self, *args, **kwargs):
         if not self.uuid:

@@ -55,6 +55,9 @@
                                 <li><a class="dropdown-item" href="{% url 'users:logout' %}">Выйти</a></li>
                             </ul>
                         </li>
+                            {% if show_create_chat_button %}
+                            <a href="{% url 'groups:create_chat' %}" class="btn_21 create-chat-btn nav-link" role="button">Создать чат</a>
+                            {% endif %}
                         {% endif %}
                     </ul>
                     <form class="d-flex search-form" role="search" action="{% url 'community:search' %}" method="get">

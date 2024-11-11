@@ -1,18 +1,15 @@
 body {
-  background-color: #1f293a; /*url("../images/bg-image.jpg");*/
+  background-color: #1f293a;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center center;
   background-size: cover;
   height: 100%;
   font-family: 'Inter', sans-serif;
-
 }
 .dropdown-toggle::after {
   content: none;
 }
-
-
 .badge.bg-warning.text-dark {
   position: absolute;
   top: 10px;
@@ -23,256 +20,230 @@ body {
   font-size: 1rem;
   box-shadow: 2px 2px 15px 9px #000000;
 }
-
 .badge-banner {
   top: 80%;
   border-radius: 15px;
   font-size: 0.7rem;
 }
-
-
 footer {
-    position: relative;
-    bottom: 0;
-    width: 100%;
+  position: relative;
+  bottom: 0;
+  width: 100%;
 }
 .custom-shadow {
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Увеличиваем размытие и добавляем прозрачность */
-    transition: transform 0.3s; /* Добавляем плавный переход для эффекта наведения */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s;
 }
-
 .custom-shadow:hover {
-    transform: translateY(-5px); /* Эффект поднятия карточки при наведении */
+  transform: translateY(-5px);
 }
-
 .card {
-    background-color: #1f293a; /* Цвет фона карточки */
-    border-radius: 15px; /* Полузакругленные края */
-    transition: transform 0.3s; /* Плавное увеличение при наведении */
+  background-color: #1f293a;
+  border-radius: 15px;
+  transition: transform 0.3s;
 }
-
 .card:hover {
-    transform: translateY(-10px); /* Подъем карточки при наведении */
+  transform: translateY(-10px);
 }
-
 .card-img-top {
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-    height: 300px;
-    object-fit: cover;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  height: 300px;
+  object-fit: cover;
 }
-
 .custom-title {
-    color: #00ffaf; /* Цвет заголовка */
-    font-weight: 600; /* Полужирный шрифт */
-    margin: 15px 0; /* Отступы вокруг заголовка */
+  color: #00ffaf;
+  font-weight: 600;
+  margin: 15px 0;
 }
-
 .card-link {
-    text-decoration: none; /* Уберите подчеркивание текста ссылки */
+  text-decoration: none;
 }
-
 .card-link:hover .custom-title {
-    text-decoration: underline; /* Подчеркивание заголовка при наведении */
+  text-decoration: underline;
 }
-
 .custom-text {
-    color: #e2f1ff; /* Цвет текста */
+  color: #e2f1ff;
 }
-
 .telegram-handle {
-    color: #00ffaf; /* Цвет для ника в Telegram */
-    font-weight: 500; /* Полужирный шрифт для ника */
+  color: #00ffaf;
+  font-weight: 500;
 }
 .btn_21 {
-    background-color: #00ffaf; /* Салатовый цвет для кнопок */
-    border: none; /* Убираем стандартную рамку */
-    color: #1d2633 !important; /* Цвет текста кнопки */
-    border-radius: 20px; /* Закругленные углы */
-    padding: 10px 20px; /* Отступы внутри кнопки */
-    transition: background-color 0.3s, transform 2s; /* Плавные переходы */
-    text-decoration: none;
-.list-group-invite {
-    background-color: transparent;
+  background-color: #00ffaf;
+  border: none;
+  color: #1d2633 !important;
+  border-radius: 20px;
+  padding: 10px 20px;
+  transition: background-color 0.3s, transform 2s;
+  text-decoration: none;
 }
+.list-group-invite {
+  background-color: transparent;
 }
 .logo-img {
-    margin-left: -55px;
-    height: 55px; /* Задайте высоту логотипа */
-    width: auto; /* Пропорциональная ширина */
+  margin-left: -55px;
+  height: 55px;
+  width: auto;
 }
 .btn_21:hover {
-    background-color: #0ba477; /* Темнее при наведении */
-    transform: scale(1.05); /* Немного увеличиваем кнопку при наведении */
+  background-color: #0ba477;
+  transform: scale(1.05);
 }
-
 .btn_21:focus {
-    outline: none; /* Убираем стандартный обвод при фокусе */
+  outline: none;
 }
-
 .custom-navbar {
-    background-color: #1f293a; /* Цвет для хедера */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15); /* Легкая тень */
-    border-bottom: 2px solid #00ffaf; /* Нижняя граница салатового цвета */
-    padding: 5px 10px;
-
+  background-color: #1f293a;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  border-bottom: 2px solid #00ffaf;
+  padding: 5px 10px;
 }
 .custom-navbar .navbar-nav {
-    align-items: center;
+  align-items: center;
 }
 .custom-navbar .nav-link {
-    color: #ffffff; /* Цвет текста ссылок */
-    padding: 10px 15px;
-    font-weight: 500;
-    transition: color 0.3s ease, background-color 0.3s ease; /* Плавная анимация для навигации */
+  color: #ffffff;
+  padding: 10px 15px;
+  font-weight: 500;
+  transition: color 0.3s ease, background-color 0.3s ease;
 }
-
 .custom-navbar .nav-link:hover {
-    color: #00ffaf; /* Цвет текста навигационных ссылок при наведении */
+  color: #00ffaf;
 }
 .navbar-nav .nav-item {
-    margin-right: 10px; /* Подберите нужное значение */
+  margin-right: 10px;
 }
 .navbar-nav {
-    gap: 10px; /* Подберите нужное значение */
+  gap: 10px;
 }
 .custom-navbar .navbar-toggler {
-    border-color: #ffffff; /* Белая рамка для кнопки */
+  border-color: #ffffff;
 }
-
 .custom-navbar .navbar-toggler-icon {
-    background-color: #ffffff; /* Белая иконка для кнопки */
+  background-color: #ffffff;
 }
-
 .search-form {
-    position: relative;
+  position: relative;
 }
 .search-input::placeholder {
-    color: gray;
-    font-family: 'Consolas', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', monospace;
+  color: gray;
+  font-family: 'Consolas', 'Menlo', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', monospace;
 }
 .search-input {
-    width: 250px; /* Ширина поля ввода */
-    height: 50px; /* Высота поля ввода */
-    border: 4px solid #00ffaf;
-    border-radius: 25px; /* Округлые края */
-    background: none;
-    color: #fff;
-    font-size: 16px;
-    font-weight: 400;
-    outline: none;
-    padding-left: 10px; /* Отступ для текста */
-    transition: width 0.4s ease-in-out, border-radius 0.4s ease-in-out;
+  width: 250px;
+  height: 50px;
+  border: 4px solid #00ffaf;
+  border-radius: 25px;
+  background: none;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 400;
+  outline: none;
+  padding-left: 10px;
+  transition: width 0.4s ease-in-out, border-radius 0.4s ease-in-out;
 }
-
 .search-input:focus {
-    width: 300px; /* Ширина при фокусе */
+  width: 300px;
+  border-radius: 20px;
+  background: none;
+  color: #fff;
+  border-color: #00ffaf;
+  box-shadow: none;
 }
-
 .search {
-    background-color: #00ffaf; /* Цвет фона кнопки */
-    border: none; /* Без границы */
-    color: #fff; /* Цвет иконки */
-    border-radius: 50%; /* Круглая форма */
-    width: 50px; /* Ширина кнопки */
-    height: 50px; /* Высота кнопки */
-    display: flex; /* Используем flexbox для центрирования */
-    align-items: center; /* Вертикальное выравнивание */
-    justify-content: center; /* Горизонтальное выравнивание */
-    cursor: pointer; /* Указатель при наведении */
-    transition: background-color 0.3s ease; /* Плавный переход фона */
+  background-color: #00ffaf;
+  border: none;
+  color: #fff;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
-
 .search:hover {
-    background-color: #0ba477; /* Изменяем цвет фона при наведении */
+  background-color: #0ba477;
 }
-
-
 .dropdown-menu {
-    background-color: #1d2633; /* Цвет фона, например, темно-серый */
-    color: #1d2633; /* Цвет текста */
+  background-color: #1d2633;
+  color: #1d2633;
 }
-
 .dropdown-item {
-    color: #ffffff; /* Цвет текста для элементов выпадающего меню */
+  color: #ffffff;
 }
 .public_user_profile-profile-container {
-    display: flex; /* Используем флекс для центрирования */
-    justify-content: center; /* Центрируем по горизонтали */
-    align-items: center; /* Центрируем по вертикали */
-    min-height: 100vh; /* Минимальная высота контейнера на весь экран */
-    padding: 20px; /* Отступы внутри контейнера */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
 }
 .public_user_profile-card {
-    width: 100%; /* Ширина карточки на 100% от родителя */
-    max-width: 600px; /* Максимальная ширина карточки */
-    margin: 10px; /* Отступы вокруг карточки */
-    padding: 10px; /* Внутренние отступы для карточки */
-    background-color: rgba(31, 41, 58, 0.9); /* Полупрозрачный фон */
-    border-radius: 15px; /* Закругленные углы карточки */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Тень для карточки */
-    word-wrap: break-word; /* Позволяет переносить длинные слова */
-    overflow-wrap: break-word; /* Дополнительная поддержка для переносов */
-
+  width: 100%;
+  max-width: 600px;
+  margin: 10px;
+  padding: 10px;
+  background-color: rgba(31, 41, 58, 0.9);
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
-
 .dropdown-item:hover {
-    background-color: #495057; /* Цвет фона при наведении */
+  background-color: #495057;
 }
-
 .pagination {
-    border-radius: 20px; /* Полузакругленные края */
-    background-color: transparent; /* Полупрозрачный фон */
-    padding: 10px; /* Отступы внутри пагинации */
+  border-radius: 20px;
+  background-color: transparent;
+  padding: 10px;
 }
-
 .page-item {
-    margin: 0 5px; /* Отступы между элементами пагинации */
+  margin: 0 5px;
 }
-
 .page-link {
-    color: #fff; /* Цвет текста по умолчанию (белый) */
-    background-color: #1f293a; /* Темный фон кнопок */
-    border: 2px solid transparent; /* Начальный цвет границы */
-    border-radius: 15px; /* Полузакругленные края для ссылок */
-    padding: 8px 12px; /* Отступы внутри ссылок */
-    transition: background-color 0.3s, color 0.3s; /* Плавные переходы */
+  color: #fff;
+  background-color: #1f293a;
+  border: 2px solid transparent;
+  border-radius: 15px;
+  padding: 8px 12px;
+  transition: background-color 0.3s, color 0.3s;
 }
-
 .page-link:hover {
-    background-color: rgba(0, 255, 175, 0.8); /* Цвет фона при наведении */
-    border-color: #00ffaf; /* Цвет границы при наведении */
-    color: #1f293a; /* Цвет текста при наведении */
+  background-color: rgba(0, 255, 175, 0.8);
+  border-color: #00ffaf;
+  color: #1f293a;
 }
-
 .page-item.active .page-link {
-    background-color: #00ffaf; /* Цвет фона для активной страницы */
-    color: #1f293a; /* Цвет текста для активной страницы */
-    border-color: #00ffaf; /* Цвет границы для активной страницы */
+  background-color: #00ffaf;
+  color: #1f293a;
+  border-color: #00ffaf;
 }
-
 .page-item.disabled .page-link {
-    color: rgba(255, 255, 255, 0.5); /* Цвет текста для неактивных элементов */
-    background-color: #1f293a; /* Темный фон для неактивных кнопок */
-    pointer-events: none; /* Отключаем события клика для неактивных элементов */
+  color: rgba(255, 255, 255, 0.5);
+  background-color: #1f293a;
+  pointer-events: none;
 }
-
-/* Стилизация полосы прокрутки для WebKit браузеров (Chrome, Safari) */
 ::-webkit-scrollbar {
-    width: 6px; /* Ширина вертикальной полосы прокрутки */
-    height: 12px; /* Высота горизонтальной полосы прокрутки */
+  width: 6px;
+  height: 12px;
 }
-
 ::-webkit-scrollbar-track {
-    background: #1f293a; /* Цвет фона полосы прокрутки */
-    border-radius: 10px; /* Закругление углов */
+  background: #1f293a;
+  border-radius: 10px;
 }
-
 ::-webkit-scrollbar-thumb {
-    background: #00ffaf; /* Цвет самой полосы прокрутки */
-    border-radius: 10px; /* Закругление углов */
+  background: #00ffaf;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
-::-webkit-scrollbar-thumb:hover {
-    background: #555; /* Цвет полосы прокрутки при наведении */
+
+.create-chat-btn {
+    margin-left: auto;
+    margin-right: 20px;
 }

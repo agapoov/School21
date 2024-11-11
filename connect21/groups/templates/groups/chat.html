@@ -7,6 +7,42 @@
 
 {% block content %}
 <div class="chat-container">
+    {% if group.created_by == request.user %}
+        <div class="dropdown chat-options">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-gear-fill"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+                <li>
+                    <button class="dropdown-item text-danger" data-bs-toggle="modal" data-bs-target="#deleteChatModal">
+                        Удалить чат
+                    </button>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Модальное окно -->
+        <div class="modal fade " id="deleteChatModal" tabindex="-1" aria-labelledby="deleteChatModalLabel" aria-hidden="true">
+            <div class="modal-dialog ">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title " id="deleteChatModalLabel">Подтверждение удаления</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                    </div>
+                    <div class="modal-body">
+                        Вы уверены, что хотите удалить чат <strong>{{ group.name }}</strong>? Это действие необратимо.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+                        <form method="post" action="{% url 'groups:delete_chat' group.uuid %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">Удалить</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endif %}
     <div class="chat-messages" id="chat-messages">
         {% for message in messages %}
             <div class="chat-message {% if message.user == request.user %}user-message{% else %}other-message{% endif %}">

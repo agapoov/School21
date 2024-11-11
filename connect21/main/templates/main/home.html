@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block content %}
-    <a href="{% url 'community:community-list' %}" class="btn btn-primary ">Перейти в список</a>
+    <a href="{% url 'community:community-list' %}" class="btn btn-primary_custom ">Перейти в список</a>
     <div class="container mt-4">
         <div class="row justify-content-center">
             <div class="col-lg-8">
@@ -17,7 +17,7 @@
                             Здесь вы можете найти пользователей, обмениваться информацией и создавать группы по интересам.
                             Присоединяйтесь к сообществу, чтобы делиться опытом и получать новые знания.
                         </p>
-                        <a href="{% url 'main:about' %}" class="btn btn-primary">Узнать больше</a>
+                        <a href="{% url 'main:about' %}" class="btn btn-primary_custom">Узнать больше</a>
                     </div>
                 </div>
 
@@ -27,26 +27,28 @@
                             <div class="main-card text-center rounded-3 shadow">
                                 <div class="main-card-body">
                                     {% if request.user.is_authenticated %}
-                                        <h2 class="animated-title">Ваши чаты</h2>
-                                            {% if user_groups %}
-                                                <ul class="list-group_revievs">
-                                                    {% for membership in user_groups %}
-                                                        <li class="list-group-item">
-                                                            <a href="{% url 'groups:group_chat' membership.group.uuid %}" class="btn_21">{{ membership.group.name }}</a>
-                                                        </li>
-                                                    {% endfor %}
-                                                </ul>
-                                            {% else %}
-                                                <p class="main-card-text">У вас пока нет чатов.</p>
-                                            {% endif %}
+                                        <h2 class="animated-title mb-4 text-primary">Ваши чаты</h2>
+                                        {% if user_groups %}
+                                            <div class="group-cards">
+                                                {% for membership in user_groups %}
+                                                    <div class="group-card rounded-3 shadow-sm p-3 mb-3">
+                                                        <h5 class="group-name">{{ membership.group.name }}</h5>
+                                                        <a href="{% url 'groups:group_chat' membership.group.uuid %}" class="btn group_main_button">Перейти</a>
+                                                    </div>
+                                                {% endfor %}
+                                            </div>
+                                        {% else %}
+                                            <p class="main-card-text text-muted">У вас пока нет чатов.</p>
+                                        {% endif %}
                                     {% else %}
-                                        <p class="main-card-text">Войдите в аккаунт чтобы вас могли пригласить в чат</p>
+                                        <p class="main-card-text text-muted">Войдите в аккаунт, чтобы вас могли пригласить в чат.</p>
                                     {% endif %}
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
 
 
                 <div class="main-card-text mt-4">

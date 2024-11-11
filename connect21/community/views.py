@@ -2,14 +2,12 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import ObjectDoesNotExist
-from django.db.models import Q
-from django.http import (HttpResponse, HttpResponseBadRequest,
-                         HttpResponseRedirect)
-from django.shortcuts import get_object_or_404, redirect, render
+from django.http import HttpResponseRedirect
+from django.shortcuts import get_object_or_404
 from django.views.decorators.http import require_POST
-from django.views.generic import CreateView, DetailView, ListView
+from django.views.generic import DetailView, ListView
 
-from groups.models import ChatGroup, GroupInvitation, GroupMembership
+from groups.models import ChatGroup, GroupMembership
 from main.mixins import TitleMixin
 from users.models import User
 

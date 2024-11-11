@@ -3,8 +3,8 @@
     width: 80%;
     margin: 50px auto;
     border-radius: 8px;
-    background-color: #191520;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: #1a2431; /* Темный фон */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -21,53 +21,57 @@
     flex-direction: column;
     gap: 10px;
     max-height: 500px;
+    scrollbar-color: #1f2833 #0b0c10; /* Стилизация скроллбара */
+    scrollbar-width: thin;
+
 }
 
 .chat-message {
-    background-color: #fff;
+    background-color: #1f2833; /* Темный серый для сообщений */
     padding: 10px 20px;
-    border-radius: 30px; /* Овал */
+    border-radius: 30px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     display: inline-block;
     font-size: 16px;
-    color: #333;
-    max-width: 70%; /* Ограничиваем максимальную ширину */
-    word-wrap: break-word; /* Перенос длинных слов */
+    color: #c5c6c7; /* Светлый текст */
+    max-width: 70%;
+    word-wrap: break-word;
     position: relative;
     margin-bottom: 15px;
+
 }
 
 .chat-message .username {
     font-weight: bold;
     font-size: 14px;
     margin-bottom: 5px;
-    color: #80ffd7
+    color: #00ffaf; /* Бирюзовый */
 }
 
 .timestamp {
     display: block;
     margin-top: 5px;
     font-size: 12px;
-    color: #999;
-    text-align: right; /* Время выравнивается по правому краю */
+    color: #e2f1ff; /* Бледно-бирюзовый */
+    text-align: right;
 }
 
 .user-message {
-    background-color: #564875;
-    color: white;
+    background-color: #575e64; /* Бирюзовый фон для сообщений пользователя */
+    color: #e2f1ff; /* Тёмный текст */
     align-self: flex-end;
 }
 
 .other-message {
-    background-color: #272131;
-    color: #f5f5f5;
+    background-color: #1f2833; /* Темный фон для сообщений других пользователей */
+    color: #e2f1ff; /* Светлый текст */
     align-self: flex-start;
 }
 
 /* Поле ввода и кнопка отправки */
 .message-input-container {
     display: flex;
-    align-items: flex-end; /* Поле ввода остается на одной линии с кнопкой */
+    align-items: flex-end;
     gap: 5px;
 }
 
@@ -75,47 +79,85 @@
     flex: 1;
     padding: 10px;
     font-size: 16px;
-    border: 1px solid #917bbd;
+    border: 1px solid #66fcf1; /* Бирюзовая рамка */
     border-radius: 20px;
-    background-color: #221e2a; /* Новый цвет фона */
-    color: white; /* Цвет текста */
-    resize: none; /* Убираем ручное изменение размера */
-    overflow-y: hidden; /* Скрываем скроллбар */
+    background-color: #1f2833; /* Темный фон */
+    color: #c5c6c7;
+    resize: none;
+    overflow-y: hidden;
 }
 
 #chat-message-input:focus {
-    background-color: #1d1a25; /* Цвет фона при фокусе */
-    border: 1px solid #00ffaf;
+    background-color: #1a2431; /* Глубокий черный при фокусе */
+    border: 1px solid #00ffaf; /* Бирюзовый акцент */
 }
 
-
-
-/* Для адаптивности */
-@media (max-width: 768px) {
-    .chat-container {
-        width: 95%;
-    }
-
-    #chat-message-input {
-        width: 70%;
-    }
-}
-
-
+/* Кнопка отправки */
 .send-btn {
     background: none;
     border: none;
     cursor: pointer;
     padding: 10px;
     margin-left: 5px;
-    color: #00ffaf
+    color: #00ffaf; /* Бирюзовый */
 }
 
 .send-btn i {
     font-size: 20px;
-    color: #917bbd ;
+    color: #00ffaf; /* Бледно-бирюзовый */
 }
 
 .send-btn:hover i {
-    color: #866cbc;
+    color: #ffffff; /* Более яркий бирюзовый */
+}
+
+/* Для адаптивности */
+@media (max-width: 768px) {
+    .chat-container {
+        width: 95%;
+    }
+}
+
+.modal-dialog {
+    max-width: 500px; /* Ограничение ширины */
+}
+
+.modal-content {
+    background-color: #1f293a;
+    border-radius: 8px;
+    color: #fff;
+}
+
+.btn-secondary {
+    background-color: #555; /* Темная кнопка "Отмена" */
+    border-color: #444;
+}
+
+.btn-secondary:hover {
+    background-color: #444;
+}
+
+.btn-danger {
+    background-color: #ff4444; /* Ярко-красная кнопка для удаления */
+    border-color: #ff3333;
+}
+
+.btn-danger:hover {
+    background-color: #ff1f1f; /* Красный цвет при наведении */
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 12px;
+}
+::-webkit-scrollbar-track {
+  background: #1f293a;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: #00ffaf;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

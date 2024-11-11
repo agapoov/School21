@@ -1,0 +1,43 @@
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href="{% static 'deps/css/register_css.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="login-box">
+            <h2>Создание чата</h2>
+            <form method="post" action="{% url 'groups:create_chat' %}">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+
+                <div class="input-row">
+                    <div class="input-box">
+                        {{ form.name }}
+                        <label for="{{ form.name.id_for_label }}">Название чата</label>
+                        {{ form.name.errors }}
+                    </div>
+                </div>
+
+                <div class="input-row">
+                    <div class="input-box">
+                        {{ form.interest }}
+                        <label for="{{ form.interest.id_for_label }}">Интерес</label>
+                        {{ form.interest.errors }}
+                    </div>
+                </div>
+
+                <div class="input-row">
+                    <div class="form-field">
+                        <textarea id="description" name="description" maxlength="512" placeholder="Введите описание чата...">{{ form.description.value|default:'' }}</textarea>
+                        <label for="description">Описание</label>
+                        {{ form.description.errors }}
+                    </div>
+                </div>
+
+                <button type="submit" class="btn">Создать чат</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

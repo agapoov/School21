@@ -1,5 +1,4 @@
 from django.contrib import messages
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
@@ -19,10 +18,11 @@ class HomeView(TitleMixin, TemplateView):
         if self.request.user.is_authenticated:
             context['user_groups'] = GroupMembership.objects.filter(user=self.request.user).select_related('group')
             context['incoming_invitations'] = GroupInvitation.objects.filter(receiver=self.request.user, status='pending')
+            context['show_create_chat_button'] = True
         return context
 
 
-class RespondInvitationView(View):
+class RespondInvitationView(LoginRequiredMixin, View):
     def post(self, request, invitation_id):
         invitation = get_object_or_404(GroupInvitation, id=invitation_id)
 

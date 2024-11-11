@@ -19,26 +19,24 @@
 }
 
 .main-card-text {
-    color: #e2f1ff; /* Цвет текста */
-    text-align: justify
+    color: #e2f1ff !important;
 
 }
 
-.btn-primary {
-    background-color: #00ffaf; /* Цвет кнопки */
-    border: none; /* Без границы */
+.btn-primary_custom {
+    background-color: #00ffaf;
+    border: none;
     color: #1d2633 !important;
-    border-radius: 20px; /* Закругленные углы */
-    padding: 10px 20px; /* Отступы внутри кнопки */
+    border-radius: 20px;
+    padding: 10px 20px;
 }
 
-.btn-primary:hover {
-    background-color: #0ba477; /* Цвет кнопки при наведении */
+.btn-primary_custom:hover {
+    background-color: #0ba477;
 }
 
-/* Пример дополнительного стиля для тени */
 .shadow {
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); /* Тень для эффекта приподнятости */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
 @keyframes gradient-animation {
@@ -54,13 +52,51 @@
 }
 
 .animated-title {
-    font-size: 3rem; /* Размер шрифта */
-    font-weight: bold; /* Жирное начертание */
-    background: linear-gradient(270deg, #2d87e0, #62e8c6, #44b3a0); /* Переливающийся градиент */
-    -webkit-background-clip: text; /* Обрезка фона по тексту */
-    -webkit-text-fill-color: transparent; /* Прозрачный цвет текста */
-    background-size: 200% 200%; /* Размер фона для анимации */
-    animation: gradient-animation 3s ease infinite; /* Анимация */
-    text-align: center; /* Центрирование текста */
-    margin: 20px 0; /* Отступы сверху и снизу */
+    font-size: 3rem;
+    font-weight: bold;
+    background: linear-gradient(270deg, #2d87e0, #62e8c6, #44b3a0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% 200%;
+    animation: gradient-animation 3s ease infinite;
+    text-align: center;
+    margin: 20px 0;
+}
+
+
+/* Карточка группы */
+.group-card {
+    background: transparent;
+    border: 1px solid transparent;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+/* Название группы */
+.group-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #00ffaf;
+    margin-bottom: 10px;
+
+}
+
+.group_main_button {
+    background-color: #00ffaf;
+    color: #1d2633;
+    border-radius: 25px;
+    padding: 8px 20px;
+    border: none;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.group_main_button:hover {
+    background-color: #0ba477; /* Темнее при наведении */
+    color: #1d2633; /* Светлый текст */
+    transform: scale(1.05); /* Увеличение кнопки */
+}
+
+.group_main_button:focus {
+    outline: none;
 }

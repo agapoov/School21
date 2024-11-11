@@ -10,6 +10,7 @@ env/
 venv/
 .idea
 media/
+.flake8
 
 var
 log

@@ -175,9 +175,7 @@ CELERY_TIMEZONE = 'Europe/Moscow'
 
 # Email settings
 
-# EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"  # Для того чтобы отправлять почту в терминал
-                                                            # раскомментируйте данную строку и закомментируйте нижнюю
-EMAIL_BACKEND = config('EMAIL_BACKEND')  # Эту :
+EMAIL_BACKEND = config('EMAIL_BACKEND') if not DEBUG else 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = config('EMAIL_HOST')
 EMAIL_PORT = config('EMAIL_PORT', cast=int)
 EMAIL_USE_SSL = config('EMAIL_USE_SSL', cast=bool)
