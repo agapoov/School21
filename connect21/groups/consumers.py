@@ -39,7 +39,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
             self.room_group_name,
             {
                 'type': 'chat_message',
-                'message': message,
+                'message': message_obj.message,
                 'username': user.username,
                 'timestamp': message_obj.timestamp.strftime('%H:%M'),
                 'user_id': self.scope["session"].get('user_id'),
@@ -64,8 +64,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
     @database_sync_to_async
     def save_message(self, group, user, message_content):
-        return ChatMessage.objects.create(
-            group=group,
-            user=user,
-            message=message_content,
-        )
+        message = ChatMessage(group=group, user=user)
+        message.set_message(message_content)
+        message.save()
+        return message

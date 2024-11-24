@@ -56,11 +56,12 @@ def chat_view(request, group_uuid):
 
     if not GroupMembership.objects.filter(group=group, user=request.user).exists():
         return HttpResponseForbidden("Access Denied. You are not a member of this group.")
-
     messages = ChatMessage.objects.filter(group=group).order_by('timestamp')
+    messages_data = [{'username': message.user.username, 'message': message.message, 'timestamp': message.timestamp} for message in messages]
+
     request.session['user_id'] = request.user.id
     return render(request, 'groups/chat.html', {
         'group': group,
-        'messages': messages,
+        'messages': messages_data,
         'title': f'Connect21 - Чат {group.name}'
     })

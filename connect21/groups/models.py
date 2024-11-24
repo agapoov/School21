@@ -3,6 +3,8 @@ import uuid
 from django.db import models
 
 from users.models import User
+from django.conf import settings
+from cryptography.fernet import Fernet
 
 
 class ChatGroup(models.Model):
@@ -49,8 +51,19 @@ class GroupInvitation(models.Model):
 class ChatMessage(models.Model):
     group = models.ForeignKey(ChatGroup, on_delete=models.CASCADE, related_name='messages')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    message = models.TextField()
+    encrypted_message = models.TextField()
     timestamp = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"Message from {self.user.username} in {self.group.name}: {self.message}"
+        return f"Message from {self.user.username} in {self.group.name}"
+
+    @property
+    def message(self):
+        """Decryption before sending"""
+        cipher_suite = Fernet(settings.ENCRYPTION_KEY)
+        return cipher_suite.decrypt(self.encrypted_message.encode()).decode()
+
+    def set_message(self, message_content):
+        """Encrypt before saving"""
+        cipher_suite = Fernet(settings.ENCRYPTION_KEY)
+        self.encrypted_message = cipher_suite.encrypt(message_content.encode()).decode()
