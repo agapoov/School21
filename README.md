@@ -1,3 +1,6 @@
+<div align="center">
+  <img src="connect21/static/deps/images/21logo.png" alt="Страница регистрации" />
+</div>
 # Технологический стек проекта
 
 
