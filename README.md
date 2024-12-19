@@ -63,7 +63,10 @@ EMAIL_PORT=465
 EMAIL_USE_SSL=True
 EMAIL_HOST_USER=<your_email@yandex.ru>
 EMAIL_HOST_PASSWORD=<your_password_or_app_password>
+
+ENCRYPTION_KEY=ev7MmVkVS8kOfL_mPBIRqSto5C2g47JGUloOuYRQirE=
 ```
+ENCRYPTION_KEY Необходим для шифрования сообщений, и с помощью Fernet можете создать свой ключ шифрования
 
 ### 4. Сборка и запуск контейнеров
 
